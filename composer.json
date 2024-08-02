@@ -1,0 +1,50 @@
+{
+  "name": "alohi/signplus",
+  "version": "2.0.0",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": "^8.0",
+    "symfony/serializer": "^7.0",
+    "guzzlehttp/guzzle": "^7.0",
+    "symfony/property-info": "^7.0",
+    "symfony/property-access": "^7.0",
+    "phpdocumentor/reflection-docblock": "^5.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9",
+    "laravel/pint": "^1.13.7",
+    "phpstan/phpstan": "^1.8",
+    "php-http/mock-client": "^1.6",
+    "nyholm/psr7": "^1.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "Signplus\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\Signplus\\": "tests/"
+    }
+  },
+  "scripts": {
+    "pint": [
+      "./vendor/bin/pint"
+    ],
+    "refactor": [
+      "./vendor/bin/rector --debug"
+    ],
+    "stan": [
+      "./vendor/bin/phpstan analyse src test"
+    ],
+    "test": [
+      "./vendor/bin/phpunit --testdox"
+    ]
+  },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
+  }
+}
