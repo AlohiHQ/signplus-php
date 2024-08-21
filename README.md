@@ -33,17 +33,16 @@ print_r($response);
 <?php
 
 use Signplus\Client;
-use Signplus\Models\EnvelopeFlowType;
 use Signplus\Models\EnvelopeLegalityLevel;
 use Signplus\Models\CreateEnvelopeRequest;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
+$envelopeLegalityLevel = EnvelopeLegalityLevel::Ses;
 
 $input = new CreateEnvelopeRequest(
   name: "name",
-  flowType: EnvelopeFlowType::RequestSignature,
-  legalityLevel: EnvelopeLegalityLevel::Ses,
+  legalityLevel: $envelopeLegalityLevel,
   expiresAt: 123,
   comment: "comment",
   sandbox: true
@@ -107,7 +106,7 @@ $input = new ListEnvelopesRequest(
   last: 123,
   after: "after",
   before: "before",
-  orderField: EnvelopeOrderField::CreationDate,
+  orderField: $envelopeOrderField,
   ascending: true,
   includeTrash: true
 );
@@ -212,6 +211,11 @@ use Signplus\Models\SetEnvelopeDynamicFieldsRequest;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
+
+$dynamicField = new DynamicField(
+  name: "name",
+  value: "value"
+);
 
 $input = new SetEnvelopeDynamicFieldsRequest(
   dynamicFields: []
@@ -395,7 +399,7 @@ $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
 
 $input = new SetEnvelopeLegalityLevelRequest(
-  legalityLevel: EnvelopeLegalityLevel::Ses
+  legalityLevel: $envelopeLegalityLevel
 );
 
 $response = $sdk->Signplus->setEnvelopeLegalityLevel(
@@ -452,7 +456,7 @@ use Signplus\Models\AddAnnotationRequest;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
-AnnotationType::Text
+$annotationType = AnnotationType::Text;
 
 $input = new AddAnnotationRequest(
   recipientId: "recipient_id",
@@ -463,7 +467,7 @@ $input = new AddAnnotationRequest(
   width: 123,
   height: 123,
   required: true,
-  type: AnnotationType::Text,
+  type: $annotationType,
   signature: $annotationSignature,
   initials: $annotationInitials,
   text: $annotationText,
@@ -535,7 +539,7 @@ $input = new ListTemplatesRequest(
   last: 123,
   after: "after",
   before: "before",
-  orderField: TemplateOrderField::TemplateId,
+  orderField: $templateOrderField,
   ascending: true
 );
 
@@ -654,6 +658,10 @@ use Signplus\Models\AddTemplateSigningStepsRequest;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
+
+$templateSigningStep = new TemplateSigningStep(
+  recipients: []
+);
 
 $input = new AddTemplateSigningStepsRequest(
   signingSteps: []
@@ -781,7 +789,7 @@ use Signplus\Models\AddAnnotationRequest;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
-AnnotationType::Text
+$annotationType = AnnotationType::Text;
 
 $input = new AddAnnotationRequest(
   recipientId: "recipient_id",
@@ -792,7 +800,7 @@ $input = new AddAnnotationRequest(
   width: 123,
   height: 123,
   required: true,
-  type: AnnotationType::Text,
+  type: $annotationType,
   signature: $annotationSignature,
   initials: $annotationInitials,
   text: $annotationText,
@@ -834,10 +842,10 @@ use Signplus\Models\CreateWebhookRequest;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
-WebhookEvent::EnvelopeExpired
+$webhookEvent = WebhookEvent::EnvelopeExpired;
 
 $input = new CreateWebhookRequest(
-  event: WebhookEvent::EnvelopeExpired,
+  event: $webhookEvent,
   target: "target"
 );
 
@@ -861,7 +869,7 @@ $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
 $input = new ListWebhooksRequest(
   webhookId: "webhook_id",
-  event: WebhookEvent::EnvelopeExpired
+  event: $webhookEvent
 );
 
 $response = $sdk->Signplus->listWebhooks(

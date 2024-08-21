@@ -4,5 +4,5 @@ namespace Signplus;
 
 class Environment
 {
-    const Default = 'https://api.sign.plus/v2';
+    const Default = 'https://restapi.sign.plus/v2';
 }

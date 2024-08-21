@@ -7,7 +7,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 class AddTemplateDocumentRequest
 {
     /**
-     * @var resource|false*/
+     * @var resource*/
     #[SerializedName('file')]
     public mixed $file;
 
