@@ -10,9 +10,9 @@ class SetEnvelopeCommentRequest
      * Comment for the envelope
      */
     #[SerializedName('comment')]
-    public ?string $comment;
+    public string $comment;
 
-    public function __construct(?string $comment = null)
+    public function __construct(string $comment)
     {
         $this->comment = $comment;
     }

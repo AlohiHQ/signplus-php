@@ -10,7 +10,7 @@ class CreateEnvelopeFromTemplateRequest
      * Name of the envelope
      */
     #[SerializedName('name')]
-    public ?string $name;
+    public string $name;
 
     /**
      * Comment for the envelope
@@ -24,7 +24,7 @@ class CreateEnvelopeFromTemplateRequest
     #[SerializedName('sandbox')]
     public ?bool $sandbox;
 
-    public function __construct(?string $name = null, ?string $comment = null, ?bool $sandbox = null)
+    public function __construct(string $name, ?string $comment = null, ?bool $sandbox = null)
     {
         $this->name = $name;
         $this->comment = $comment;
