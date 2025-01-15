@@ -3,82 +3,52 @@
 namespace Signplus\Services;
 
 use Signplus\Utils\Serializer;
-use Signplus\Models\AddAnnotationRequest;
-use Signplus\Models\AddEnvelopeDocumentRequest;
-use Signplus\Models\AddEnvelopeSigningStepsRequest;
-use Signplus\Models\AddTemplateDocumentRequest;
-use Signplus\Models\AddTemplateSigningStepsRequest;
-use Signplus\Models\Annotation;
-use Signplus\Models\CreateEnvelopeFromTemplateRequest;
-use Signplus\Models\CreateEnvelopeRequest;
-use Signplus\Models\CreateTemplateRequest;
-use Signplus\Models\CreateWebhookRequest;
-use Signplus\Models\Document;
-use Signplus\Models\Envelope;
-use Signplus\Models\EnvelopeNotification;
-use Signplus\Models\ListEnvelopeDocumentAnnotationsResponse;
-use Signplus\Models\ListEnvelopeDocumentsResponse;
-use Signplus\Models\ListEnvelopesRequest;
-use Signplus\Models\ListEnvelopesResponse;
-use Signplus\Models\ListTemplateAnnotationsResponse;
-use Signplus\Models\ListTemplateDocumentAnnotationsResponse;
-use Signplus\Models\ListTemplateDocumentsResponse;
-use Signplus\Models\ListTemplatesRequest;
-use Signplus\Models\ListTemplatesResponse;
-use Signplus\Models\ListWebhooksRequest;
-use Signplus\Models\ListWebhooksResponse;
-use Signplus\Models\RenameEnvelopeRequest;
-use Signplus\Models\RenameTemplateRequest;
-use Signplus\Models\SetEnvelopeCommentRequest;
-use Signplus\Models\SetEnvelopeDynamicFieldsRequest;
-use Signplus\Models\SetEnvelopeExpirationRequest;
-use Signplus\Models\SetEnvelopeLegalityLevelRequest;
-use Signplus\Models\SetTemplateCommentRequest;
-use Signplus\Models\Template;
-use Signplus\Models\Webhook;
+use Signplus\Models;
 
 class Signplus extends BaseService
 {
     /**
      * Create new envelope
      */
-    public function createEnvelope(CreateEnvelopeRequest $input): Envelope
+    public function createEnvelope(Models\CreateEnvelopeRequest $input): Models\Envelope
     {
         $data = $this->sendRequest('post', '/envelope', ['json' => Serializer::serialize($input)]);
 
-        return Serializer::deserialize($data, Envelope::class);
+        return Serializer::deserialize($data, Models\Envelope::class);
     }
 
     /**
      * Create new envelope from template
      */
-    public function createEnvelopeFromTemplate(CreateEnvelopeFromTemplateRequest $input, string $templateId): Envelope
-    {
+    public function createEnvelopeFromTemplate(
+        Models\CreateEnvelopeFromTemplateRequest $input,
+        string $templateId
+    ): Models\Envelope {
         $data = $this->sendRequest('post', "/envelope/from_template/{$templateId}", [
             'json' => Serializer::serialize($input),
         ]);
 
-        return Serializer::deserialize($data, Envelope::class);
+        return Serializer::deserialize($data, Models\Envelope::class);
     }
 
     /**
      * List envelopes
      */
-    public function listEnvelopes(?ListEnvelopesRequest $input = null): ListEnvelopesResponse
+    public function listEnvelopes(?Models\ListEnvelopesRequest $input = null): Models\ListEnvelopesResponse
     {
         $data = $this->sendRequest('post', '/envelopes', ['json' => Serializer::serialize($input)]);
 
-        return Serializer::deserialize($data, ListEnvelopesResponse::class);
+        return Serializer::deserialize($data, Models\ListEnvelopesResponse::class);
     }
 
     /**
      * Get envelope
      */
-    public function getEnvelope(string $envelopeId): Envelope
+    public function getEnvelope(string $envelopeId): Models\Envelope
     {
         $data = $this->sendRequest('get', "/envelope/{$envelopeId}", []);
 
-        return Serializer::deserialize($data, Envelope::class);
+        return Serializer::deserialize($data, Models\Envelope::class);
     }
 
     /**
@@ -94,143 +64,151 @@ class Signplus extends BaseService
     /**
      * Get envelope document
      */
-    public function getEnvelopeDocument(string $envelopeId, string $documentId): Document
+    public function getEnvelopeDocument(string $envelopeId, string $documentId): Models\Document
     {
         $data = $this->sendRequest('get', "/envelope/{$envelopeId}/document/{$documentId}", []);
 
-        return Serializer::deserialize($data, Document::class);
+        return Serializer::deserialize($data, Models\Document::class);
     }
 
     /**
      * Get envelope documents
      */
-    public function getEnvelopeDocuments(string $envelopeId): ListEnvelopeDocumentsResponse
+    public function getEnvelopeDocuments(string $envelopeId): Models\ListEnvelopeDocumentsResponse
     {
         $data = $this->sendRequest('get', "/envelope/{$envelopeId}/documents", []);
 
-        return Serializer::deserialize($data, ListEnvelopeDocumentsResponse::class);
+        return Serializer::deserialize($data, Models\ListEnvelopeDocumentsResponse::class);
     }
 
     /**
      * Add envelope document
      */
-    public function addEnvelopeDocument(AddEnvelopeDocumentRequest $input, string $envelopeId): Document
+    public function addEnvelopeDocument(Models\AddEnvelopeDocumentRequest $input, string $envelopeId): Models\Document
     {
         $data = $this->sendRequest('post', "/envelope/{$envelopeId}/document", ['multipart' => $input->toMultipart()]);
 
-        return Serializer::deserialize($data, Document::class);
+        return Serializer::deserialize($data, Models\Document::class);
     }
 
     /**
      * Set envelope dynamic fields
      */
-    public function setEnvelopeDynamicFields(SetEnvelopeDynamicFieldsRequest $input, string $envelopeId): Envelope
-    {
+    public function setEnvelopeDynamicFields(
+        Models\SetEnvelopeDynamicFieldsRequest $input,
+        string $envelopeId
+    ): Models\Envelope {
         $data = $this->sendRequest('put', "/envelope/{$envelopeId}/dynamic_fields", [
             'json' => Serializer::serialize($input),
         ]);
 
-        return Serializer::deserialize($data, Envelope::class);
+        return Serializer::deserialize($data, Models\Envelope::class);
     }
 
     /**
      * Add envelope signing steps
      */
-    public function addEnvelopeSigningSteps(AddEnvelopeSigningStepsRequest $input, string $envelopeId): Envelope
-    {
+    public function addEnvelopeSigningSteps(
+        Models\AddEnvelopeSigningStepsRequest $input,
+        string $envelopeId
+    ): Models\Envelope {
         $data = $this->sendRequest('post', "/envelope/{$envelopeId}/signing_steps", [
             'json' => Serializer::serialize($input),
         ]);
 
-        return Serializer::deserialize($data, Envelope::class);
+        return Serializer::deserialize($data, Models\Envelope::class);
     }
 
     /**
      * Send envelope for signature
      */
-    public function sendEnvelope(string $envelopeId): Envelope
+    public function sendEnvelope(string $envelopeId): Models\Envelope
     {
         $data = $this->sendRequest('post', "/envelope/{$envelopeId}/send", []);
 
-        return Serializer::deserialize($data, Envelope::class);
+        return Serializer::deserialize($data, Models\Envelope::class);
     }
 
     /**
      * Duplicate envelope
      */
-    public function duplicateEnvelope(string $envelopeId): Envelope
+    public function duplicateEnvelope(string $envelopeId): Models\Envelope
     {
         $data = $this->sendRequest('post', "/envelope/{$envelopeId}/duplicate", []);
 
-        return Serializer::deserialize($data, Envelope::class);
+        return Serializer::deserialize($data, Models\Envelope::class);
     }
 
     /**
      * Void envelope
      */
-    public function voidEnvelope(string $envelopeId): Envelope
+    public function voidEnvelope(string $envelopeId): Models\Envelope
     {
         $data = $this->sendRequest('put', "/envelope/{$envelopeId}/void", []);
 
-        return Serializer::deserialize($data, Envelope::class);
+        return Serializer::deserialize($data, Models\Envelope::class);
     }
 
     /**
      * Rename envelope
      */
-    public function renameEnvelope(RenameEnvelopeRequest $input, string $envelopeId): Envelope
+    public function renameEnvelope(Models\RenameEnvelopeRequest $input, string $envelopeId): Models\Envelope
     {
         $data = $this->sendRequest('put', "/envelope/{$envelopeId}/rename", ['json' => Serializer::serialize($input)]);
 
-        return Serializer::deserialize($data, Envelope::class);
+        return Serializer::deserialize($data, Models\Envelope::class);
     }
 
     /**
      * Set envelope comment
      */
-    public function setEnvelopeComment(SetEnvelopeCommentRequest $input, string $envelopeId): Envelope
+    public function setEnvelopeComment(Models\SetEnvelopeCommentRequest $input, string $envelopeId): Models\Envelope
     {
         $data = $this->sendRequest('put', "/envelope/{$envelopeId}/set_comment", [
             'json' => Serializer::serialize($input),
         ]);
 
-        return Serializer::deserialize($data, Envelope::class);
+        return Serializer::deserialize($data, Models\Envelope::class);
     }
 
     /**
      * Set envelope notification
      */
-    public function setEnvelopeNotification(EnvelopeNotification $input, string $envelopeId): Envelope
+    public function setEnvelopeNotification(Models\EnvelopeNotification $input, string $envelopeId): Models\Envelope
     {
         $data = $this->sendRequest('put', "/envelope/{$envelopeId}/set_notification", [
             'json' => Serializer::serialize($input),
         ]);
 
-        return Serializer::deserialize($data, Envelope::class);
+        return Serializer::deserialize($data, Models\Envelope::class);
     }
 
     /**
      * Set envelope expiration date
      */
-    public function setEnvelopeExpirationDate(SetEnvelopeExpirationRequest $input, string $envelopeId): Envelope
-    {
+    public function setEnvelopeExpirationDate(
+        Models\SetEnvelopeExpirationRequest $input,
+        string $envelopeId
+    ): Models\Envelope {
         $data = $this->sendRequest('put', "/envelope/{$envelopeId}/set_expiration_date", [
             'json' => Serializer::serialize($input),
         ]);
 
-        return Serializer::deserialize($data, Envelope::class);
+        return Serializer::deserialize($data, Models\Envelope::class);
     }
 
     /**
      * Set envelope legality level
      */
-    public function setEnvelopeLegalityLevel(SetEnvelopeLegalityLevelRequest $input, string $envelopeId): Envelope
-    {
+    public function setEnvelopeLegalityLevel(
+        Models\SetEnvelopeLegalityLevelRequest $input,
+        string $envelopeId
+    ): Models\Envelope {
         $data = $this->sendRequest('put', "/envelope/{$envelopeId}/set_legality_level", [
             'json' => Serializer::serialize($input),
         ]);
 
-        return Serializer::deserialize($data, Envelope::class);
+        return Serializer::deserialize($data, Models\Envelope::class);
     }
 
     /**
@@ -249,22 +227,22 @@ class Signplus extends BaseService
     public function getEnvelopeDocumentAnnotations(
         string $envelopeId,
         string $documentId
-    ): ListEnvelopeDocumentAnnotationsResponse {
+    ): Models\ListEnvelopeDocumentAnnotationsResponse {
         $data = $this->sendRequest('get', "/envelope/{$envelopeId}/annotations/{$documentId}", []);
 
-        return Serializer::deserialize($data, ListEnvelopeDocumentAnnotationsResponse::class);
+        return Serializer::deserialize($data, Models\ListEnvelopeDocumentAnnotationsResponse::class);
     }
 
     /**
      * Add envelope annotation
      */
-    public function addEnvelopeAnnotation(AddAnnotationRequest $input, string $envelopeId): Annotation
+    public function addEnvelopeAnnotation(Models\AddAnnotationRequest $input, string $envelopeId): Models\Annotation
     {
         $data = $this->sendRequest('post', "/envelope/{$envelopeId}/annotation", [
             'json' => Serializer::serialize($input),
         ]);
 
-        return Serializer::deserialize($data, Annotation::class);
+        return Serializer::deserialize($data, Models\Annotation::class);
     }
 
     /**
@@ -280,31 +258,31 @@ class Signplus extends BaseService
     /**
      * Create new template
      */
-    public function createTemplate(CreateTemplateRequest $input): Template
+    public function createTemplate(Models\CreateTemplateRequest $input): Models\Template
     {
         $data = $this->sendRequest('post', '/template', ['json' => Serializer::serialize($input)]);
 
-        return Serializer::deserialize($data, Template::class);
+        return Serializer::deserialize($data, Models\Template::class);
     }
 
     /**
      * List templates
      */
-    public function listTemplates(?ListTemplatesRequest $input = null): ListTemplatesResponse
+    public function listTemplates(?Models\ListTemplatesRequest $input = null): Models\ListTemplatesResponse
     {
         $data = $this->sendRequest('post', '/templates', ['json' => Serializer::serialize($input)]);
 
-        return Serializer::deserialize($data, ListTemplatesResponse::class);
+        return Serializer::deserialize($data, Models\ListTemplatesResponse::class);
     }
 
     /**
      * Get template
      */
-    public function getTemplate(string $templateId): Template
+    public function getTemplate(string $templateId): Models\Template
     {
         $data = $this->sendRequest('get', "/template/{$templateId}", []);
 
-        return Serializer::deserialize($data, Template::class);
+        return Serializer::deserialize($data, Models\Template::class);
     }
 
     /**
@@ -320,97 +298,99 @@ class Signplus extends BaseService
     /**
      * Duplicate template
      */
-    public function duplicateTemplate(string $templateId): Template
+    public function duplicateTemplate(string $templateId): Models\Template
     {
         $data = $this->sendRequest('post', "/template/{$templateId}/duplicate", []);
 
-        return Serializer::deserialize($data, Template::class);
+        return Serializer::deserialize($data, Models\Template::class);
     }
 
     /**
      * Add template document
      */
-    public function addTemplateDocument(AddTemplateDocumentRequest $input, string $templateId): Document
+    public function addTemplateDocument(Models\AddTemplateDocumentRequest $input, string $templateId): Models\Document
     {
         $data = $this->sendRequest('post', "/template/{$templateId}/document", ['multipart' => $input->toMultipart()]);
 
-        return Serializer::deserialize($data, Document::class);
+        return Serializer::deserialize($data, Models\Document::class);
     }
 
     /**
      * Get template document
      */
-    public function getTemplateDocument(string $templateId, string $documentId): Document
+    public function getTemplateDocument(string $templateId, string $documentId): Models\Document
     {
         $data = $this->sendRequest('get', "/template/{$templateId}/document/{$documentId}", []);
 
-        return Serializer::deserialize($data, Document::class);
+        return Serializer::deserialize($data, Models\Document::class);
     }
 
     /**
      * Get template documents
      */
-    public function getTemplateDocuments(string $templateId): ListTemplateDocumentsResponse
+    public function getTemplateDocuments(string $templateId): Models\ListTemplateDocumentsResponse
     {
         $data = $this->sendRequest('get', "/template/{$templateId}/documents", []);
 
-        return Serializer::deserialize($data, ListTemplateDocumentsResponse::class);
+        return Serializer::deserialize($data, Models\ListTemplateDocumentsResponse::class);
     }
 
     /**
      * Add template signing steps
      */
-    public function addTemplateSigningSteps(AddTemplateSigningStepsRequest $input, string $templateId): Template
-    {
+    public function addTemplateSigningSteps(
+        Models\AddTemplateSigningStepsRequest $input,
+        string $templateId
+    ): Models\Template {
         $data = $this->sendRequest('post', "/template/{$templateId}/signing_steps", [
             'json' => Serializer::serialize($input),
         ]);
 
-        return Serializer::deserialize($data, Template::class);
+        return Serializer::deserialize($data, Models\Template::class);
     }
 
     /**
      * Rename template
      */
-    public function renameTemplate(RenameTemplateRequest $input, string $templateId): Template
+    public function renameTemplate(Models\RenameTemplateRequest $input, string $templateId): Models\Template
     {
         $data = $this->sendRequest('put', "/template/{$templateId}/rename", ['json' => Serializer::serialize($input)]);
 
-        return Serializer::deserialize($data, Template::class);
+        return Serializer::deserialize($data, Models\Template::class);
     }
 
     /**
      * Set template comment
      */
-    public function setTemplateComment(SetTemplateCommentRequest $input, string $templateId): Template
+    public function setTemplateComment(Models\SetTemplateCommentRequest $input, string $templateId): Models\Template
     {
         $data = $this->sendRequest('put', "/template/{$templateId}/set_comment", [
             'json' => Serializer::serialize($input),
         ]);
 
-        return Serializer::deserialize($data, Template::class);
+        return Serializer::deserialize($data, Models\Template::class);
     }
 
     /**
      * Set template notification
      */
-    public function setTemplateNotification(EnvelopeNotification $input, string $templateId): Template
+    public function setTemplateNotification(Models\EnvelopeNotification $input, string $templateId): Models\Template
     {
         $data = $this->sendRequest('put', "/template/{$templateId}/set_notification", [
             'json' => Serializer::serialize($input),
         ]);
 
-        return Serializer::deserialize($data, Template::class);
+        return Serializer::deserialize($data, Models\Template::class);
     }
 
     /**
      * Get template annotations
      */
-    public function getTemplateAnnotations(string $templateId): ListTemplateAnnotationsResponse
+    public function getTemplateAnnotations(string $templateId): Models\ListTemplateAnnotationsResponse
     {
         $data = $this->sendRequest('get', "/template/{$templateId}/annotations", []);
 
-        return Serializer::deserialize($data, ListTemplateAnnotationsResponse::class);
+        return Serializer::deserialize($data, Models\ListTemplateAnnotationsResponse::class);
     }
 
     /**
@@ -419,22 +399,22 @@ class Signplus extends BaseService
     public function getDocumentTemplateAnnotations(
         string $templateId,
         string $documentId
-    ): ListTemplateDocumentAnnotationsResponse {
+    ): Models\ListTemplateDocumentAnnotationsResponse {
         $data = $this->sendRequest('get', "/template/{$templateId}/annotations/{$documentId}", []);
 
-        return Serializer::deserialize($data, ListTemplateDocumentAnnotationsResponse::class);
+        return Serializer::deserialize($data, Models\ListTemplateDocumentAnnotationsResponse::class);
     }
 
     /**
      * Add template annotation
      */
-    public function addTemplateAnnotation(AddAnnotationRequest $input, string $templateId): Annotation
+    public function addTemplateAnnotation(Models\AddAnnotationRequest $input, string $templateId): Models\Annotation
     {
         $data = $this->sendRequest('post', "/template/{$templateId}/annotation", [
             'json' => Serializer::serialize($input),
         ]);
 
-        return Serializer::deserialize($data, Annotation::class);
+        return Serializer::deserialize($data, Models\Annotation::class);
     }
 
     /**
@@ -450,21 +430,21 @@ class Signplus extends BaseService
     /**
      * Create webhook
      */
-    public function createWebhook(CreateWebhookRequest $input): Webhook
+    public function createWebhook(Models\CreateWebhookRequest $input): Models\Webhook
     {
         $data = $this->sendRequest('post', '/webhook', ['json' => Serializer::serialize($input)]);
 
-        return Serializer::deserialize($data, Webhook::class);
+        return Serializer::deserialize($data, Models\Webhook::class);
     }
 
     /**
      * List webhooks
      */
-    public function listWebhooks(?ListWebhooksRequest $input = null): ListWebhooksResponse
+    public function listWebhooks(?Models\ListWebhooksRequest $input = null): Models\ListWebhooksResponse
     {
         $data = $this->sendRequest('post', '/webhooks', ['json' => Serializer::serialize($input)]);
 
-        return Serializer::deserialize($data, ListWebhooksResponse::class);
+        return Serializer::deserialize($data, Models\ListWebhooksResponse::class);
     }
 
     /**
