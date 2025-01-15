@@ -4,22 +4,24 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use Signplus\Models;
+
 use Signplus\Client;
 use Signplus\Models\EnvelopeLegalityLevel;
 use Signplus\Models\CreateEnvelopeRequest;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
-$envelopeLegalityLevel = EnvelopeLegalityLevel::Ses;
+$envelopeLegalityLevel = Models\EnvelopeLegalityLevel::Ses;
 
-$input = new CreateEnvelopeRequest(
+$input = new Models\CreateEnvelopeRequest(
     name: 'name',
     legalityLevel: $envelopeLegalityLevel,
-    expiresAt: 123,
+    expiresAt: 1,
     comment: 'comment',
     sandbox: true
 );
 
-$response = $sdk->Signplus->createEnvelope(input: $input);
+$response = $sdk->signplus->createEnvelope(input: $input);
 
 print_r($response);

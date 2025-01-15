@@ -8,24 +8,25 @@ use Signplus\Services;
 
 class Client
 {
-    public $Signplus;
+    public $signplus;
 
     public function __construct(
         string $accessToken,
         string $tokenPrefix = 'Bearer ',
-        string $environment = Environment::Default
+        string $environment = Environment::Default,
+        float $timeout = 0
     ) {
-        $this->Signplus = new Services\Signplus($accessToken, $tokenPrefix, $environment);
+        $this->signplus = new Services\Signplus($accessToken, $tokenPrefix, $environment, $timeout);
     }
 
     public function setBaseUrl(string $url)
     {
-        $this->Signplus->setBaseUrl($url);
+        $this->signplus->setBaseUrl($url);
     }
 
     public function setAccessToken(string $accessToken)
     {
-        $this->Signplus->setAccessToken($accessToken);
+        $this->signplus->setAccessToken($accessToken);
     }
 }
 

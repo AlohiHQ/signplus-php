@@ -12,13 +12,15 @@ class BaseService
     protected $client;
     protected string $baseUrl;
     protected array $options;
+    protected HandlerStack $stack;
 
     protected string $tokenPrefix;
 
     public function __construct(
         string $accessToken,
         string $tokenPrefix = 'Bearer ',
-        string $environment = Environment::Default
+        string $environment = Environment::Default,
+        float $timeout = 0
     ) {
         $this->tokenPrefix = $tokenPrefix;
 
@@ -32,8 +34,11 @@ class BaseService
 
         $stack->push(Retry::factory());
 
+        $this->stack = $stack;
+
         $this->client = new Client([
             'handler' => $stack,
+            'timeout' => $timeout / 1000,
         ]);
     }
 
@@ -50,6 +55,14 @@ class BaseService
     public function setBaseUrl(string $url): void
     {
         $this->baseUrl = $url;
+    }
+
+    public function setTimeout(float $timeout): void
+    {
+        $this->client = new Client([
+            'handler' => $this->stack,
+            'timeout' => $timeout / 1000,
+        ]);
     }
 
     public function setAccessToken(string $apiKey): void
