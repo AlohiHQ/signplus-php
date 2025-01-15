@@ -79,7 +79,7 @@ $envelopeLegalityLevel = Models\EnvelopeLegalityLevel::Ses;
 $input = new Models\CreateEnvelopeRequest(
   name: "name",
   legalityLevel: $envelopeLegalityLevel,
-  expiresAt: 1,
+  expiresAt: 8,
   comment: "comment",
   sandbox: true
 );
@@ -172,11 +172,11 @@ $input = new Models\ListEnvelopesRequest(
   statuses: [],
   folderIds: [],
   onlyRootFolder: true,
-  dateFrom: 5,
-  dateTo: 8,
+  dateFrom: 4,
+  dateTo: 7,
   uid: "uid",
-  first: 6,
-  last: 5,
+  first: 8,
+  last: 9,
   after: "after",
   before: "before",
   orderField: $envelopeOrderField,
@@ -668,7 +668,7 @@ $sdk = new Client(accessToken: 'YOUR_TOKEN');
 $input = new Models\EnvelopeNotification(
   subject: "subject",
   message: "message",
-  reminderInterval: 9
+  reminderInterval: 1
 );
 
 $response = $sdk->signplus->setEnvelopeNotification(
@@ -709,7 +709,7 @@ $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
 
 $input = new Models\SetEnvelopeExpirationRequest(
-  expiresAt: 9
+  expiresAt: 6
 );
 
 $response = $sdk->signplus->setEnvelopeExpirationDate(
@@ -869,11 +869,11 @@ $annotationType = Models\AnnotationType::Text;
 $input = new Models\AddAnnotationRequest(
   recipientId: "recipient_id",
   documentId: "document_id",
-  page: 123,
-  x: 3.47,
-  y: 2.25,
-  width: 1.96,
-  height: 5.45,
+  page: 5,
+  x: 2.83,
+  y: 1.27,
+  width: 5.18,
+  height: 4.34,
   required: true,
   type: $annotationType,
   signature: $annotationSignature,
@@ -998,8 +998,8 @@ $input = new Models\ListTemplatesRequest(
   name: "name",
   tags: [],
   ids: [],
-  first: 6,
-  last: 1,
+  first: 2,
+  last: 123,
   after: "after",
   before: "before",
   orderField: $templateOrderField,
@@ -1381,7 +1381,7 @@ $sdk = new Client(accessToken: 'YOUR_TOKEN');
 $input = new Models\EnvelopeNotification(
   subject: "subject",
   message: "message",
-  reminderInterval: 9
+  reminderInterval: 1
 );
 
 $response = $sdk->signplus->setTemplateNotification(
@@ -1499,11 +1499,11 @@ $annotationType = Models\AnnotationType::Text;
 $input = new Models\AddAnnotationRequest(
   recipientId: "recipient_id",
   documentId: "document_id",
-  page: 123,
-  x: 3.47,
-  y: 2.25,
-  width: 1.96,
-  height: 5.45,
+  page: 5,
+  x: 2.83,
+  y: 1.27,
+  width: 5.18,
+  height: 4.34,
   required: true,
   type: $annotationType,
   signature: $annotationSignature,
