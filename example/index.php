@@ -17,7 +17,7 @@ $envelopeLegalityLevel = Models\EnvelopeLegalityLevel::Ses;
 $input = new Models\CreateEnvelopeRequest(
     name: 'name',
     legalityLevel: $envelopeLegalityLevel,
-    expiresAt: 1,
+    expiresAt: 8,
     comment: 'comment',
     sandbox: true
 );
