@@ -13,4 +13,5 @@ enum WebhookEvent: string
     case EnvelopeDeclined = 'ENVELOPE_DECLINED';
     case EnvelopeVoided = 'ENVELOPE_VOIDED';
     case EnvelopeCompleted = 'ENVELOPE_COMPLETED';
+    case EnvelopeAuditTrail = 'ENVELOPE_AUDIT_TRAIL';
 }

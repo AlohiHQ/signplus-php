@@ -10,5 +10,6 @@ Event of the webhook
     | EnvelopeDeclined | string |  | ENVELOPE_DECLINED |
     | EnvelopeVoided | string |  | ENVELOPE_VOIDED |
     | EnvelopeCompleted | string |  | ENVELOPE_COMPLETED |
+    | EnvelopeAuditTrail | string |  | ENVELOPE_AUDIT_TRAIL |
 
 

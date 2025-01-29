@@ -79,7 +79,7 @@ $envelopeLegalityLevel = Models\EnvelopeLegalityLevel::Ses;
 $input = new Models\CreateEnvelopeRequest(
   name: "name",
   legalityLevel: $envelopeLegalityLevel,
-  expiresAt: 8,
+  expiresAt: 4,
   comment: "comment",
   sandbox: true
 );
@@ -172,10 +172,10 @@ $input = new Models\ListEnvelopesRequest(
   statuses: [],
   folderIds: [],
   onlyRootFolder: true,
-  dateFrom: 4,
-  dateTo: 7,
+  dateFrom: 3,
+  dateTo: 8,
   uid: "uid",
-  first: 8,
+  first: 6,
   last: 9,
   after: "after",
   before: "before",
@@ -709,7 +709,7 @@ $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
 
 $input = new Models\SetEnvelopeExpirationRequest(
-  expiresAt: 6
+  expiresAt: 3
 );
 
 $response = $sdk->signplus->setEnvelopeExpirationDate(
@@ -869,11 +869,11 @@ $annotationType = Models\AnnotationType::Text;
 $input = new Models\AddAnnotationRequest(
   recipientId: "recipient_id",
   documentId: "document_id",
-  page: 5,
-  x: 2.83,
-  y: 1.27,
-  width: 5.18,
-  height: 4.34,
+  page: 8,
+  x: 7.12,
+  y: 3.31,
+  width: 0.84,
+  height: 3.51,
   required: true,
   type: $annotationType,
   signature: $annotationSignature,
@@ -998,7 +998,7 @@ $input = new Models\ListTemplatesRequest(
   name: "name",
   tags: [],
   ids: [],
-  first: 2,
+  first: 4,
   last: 123,
   after: "after",
   before: "before",
@@ -1499,11 +1499,11 @@ $annotationType = Models\AnnotationType::Text;
 $input = new Models\AddAnnotationRequest(
   recipientId: "recipient_id",
   documentId: "document_id",
-  page: 5,
-  x: 2.83,
-  y: 1.27,
-  width: 5.18,
-  height: 4.34,
+  page: 8,
+  x: 7.12,
+  y: 3.31,
+  width: 0.84,
+  height: 3.51,
   required: true,
   type: $annotationType,
   signature: $annotationSignature,
