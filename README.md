@@ -1,4 +1,4 @@
-# signplus PHP SDK 2.1.0
+# signplus PHP SDK 2.2.0
 
 
 Welcome to the signplus SDK documentation. This guide will help you get started with integrating and using the signplus SDK in your project.
@@ -7,8 +7,8 @@ Welcome to the signplus SDK documentation. This guide will help you get started 
 
 ## Versions
 
-- API version: `2.1.0`
-- SDK version: `2.1.0`
+- API version: `2.2.0`
+- SDK version: `2.2.0`
 
 ## About the API
 
