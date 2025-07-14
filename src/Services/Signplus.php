@@ -62,6 +62,30 @@ class Signplus extends BaseService
     }
 
     /**
+     * Download signed documents for an envelope
+     */
+    public function downloadEnvelopeSignedDocuments(string $envelopeId, bool $certificateOfCompletion = null): mixed
+    {
+        $data = $this->sendRequest('get', "/envelope/{$envelopeId}/signed_documents", [
+            'query' => [
+                'certificate_of_completion' => $certificateOfCompletion,
+            ],
+        ]);
+
+        return json_decode($data, true);
+    }
+
+    /**
+     * Download certificate of completion for an envelope
+     */
+    public function downloadEnvelopeCertificate(string $envelopeId): mixed
+    {
+        $data = $this->sendRequest('get', "/envelope/{$envelopeId}/certificate", []);
+
+        return json_decode($data, true);
+    }
+
+    /**
      * Get envelope document
      */
     public function getEnvelopeDocument(string $envelopeId, string $documentId): Models\Document

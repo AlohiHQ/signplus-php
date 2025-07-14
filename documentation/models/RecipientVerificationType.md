@@ -1,6 +1,6 @@
 # RecipientVerificationType
 
-Type of signature verification (SMS sends a code via SMS, PASSCODE requires a code to be entered)
+Type of verification the recipient must complete before accessing the envelope. - `PASSCODE`: requires a code to be entered.   - `SMS`: sends a code via SMS.   - `ID_VERIFICATION`: prompts the recipient to complete an automated ID and selfie check.
 
 **Properties**
 
@@ -8,5 +8,6 @@ Type of signature verification (SMS sends a code via SMS, PASSCODE requires a co
 | :-------- | :----------| :----------| :----------|
     | Sms | string |  | SMS |
     | Passcode | string |  | PASSCODE |
+    | IdVerification | string |  | ID_VERIFICATION |
 
 
