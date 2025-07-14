@@ -9,5 +9,6 @@ Role of the recipient (SIGNER signs the document, RECEIVES_COPY receives a copy 
     | Signer | string |  | SIGNER |
     | ReceivesCopy | string |  | RECEIVES_COPY |
     | InPersonSigner | string |  | IN_PERSON_SIGNER |
+    | Sender | string |  | SENDER |
 
 

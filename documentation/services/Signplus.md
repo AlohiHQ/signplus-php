@@ -9,6 +9,8 @@ A list of all methods in the `Signplus` service. Click on the method name to vie
 |[list_envelopes](#list_envelopes)| List envelopes |
 |[get_envelope](#get_envelope)| Get envelope |
 |[delete_envelope](#delete_envelope)| Delete envelope |
+|[download_envelope_signed_documents](#download_envelope_signed_documents)| Download signed documents for an envelope |
+|[download_envelope_certificate](#download_envelope_certificate)| Download certificate of completion for an envelope |
 |[get_envelope_document](#get_envelope_document)| Get envelope document |
 |[get_envelope_documents](#get_envelope_documents)| Get envelope documents |
 |[add_envelope_document](#add_envelope_document)| Add envelope document |
@@ -79,7 +81,7 @@ $envelopeLegalityLevel = Models\EnvelopeLegalityLevel::Ses;
 $input = new Models\CreateEnvelopeRequest(
   name: "name",
   legalityLevel: $envelopeLegalityLevel,
-  expiresAt: 4,
+  expiresAt: 8,
   comment: "comment",
   sandbox: true
 );
@@ -172,10 +174,10 @@ $input = new Models\ListEnvelopesRequest(
   statuses: [],
   folderIds: [],
   onlyRootFolder: true,
-  dateFrom: 3,
-  dateTo: 8,
+  dateFrom: 4,
+  dateTo: 7,
   uid: "uid",
-  first: 6,
+  first: 8,
   last: 9,
   after: "after",
   before: "before",
@@ -251,6 +253,74 @@ use Signplus\Client;
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
 $response = $sdk->signplus->deleteEnvelope(
+  envelopeId: "envelope_id"
+);
+
+print_r($response);
+```
+
+## download_envelope_signed_documents
+
+Download signed documents for an envelope
+
+
+- HTTP Method: `GET`
+- Endpoint: `/envelope/{envelope_id}/signed_documents`
+
+**Parameters**
+
+| Name    | Type| Required | Description |
+| :-------- | :----------| :----------| :----------|
+| $envelopeId | string | ✅ | ID of the envelope |
+| $certificateOfCompletion | bool | ❌ | Whether to include the certificate of completion in the downloaded file |
+
+**Return Type**
+
+`mixed`
+
+**Example Usage Code Snippet**
+```php
+<?php
+
+use Signplus\Client;
+
+$sdk = new Client(accessToken: 'YOUR_TOKEN');
+
+$response = $sdk->signplus->downloadEnvelopeSignedDocuments(
+  certificateOfCompletion: true,
+  envelopeId: "envelope_id"
+);
+
+print_r($response);
+```
+
+## download_envelope_certificate
+
+Download certificate of completion for an envelope
+
+
+- HTTP Method: `GET`
+- Endpoint: `/envelope/{envelope_id}/certificate`
+
+**Parameters**
+
+| Name    | Type| Required | Description |
+| :-------- | :----------| :----------| :----------|
+| $envelopeId | string | ✅ | ID of the envelope |
+
+**Return Type**
+
+`mixed`
+
+**Example Usage Code Snippet**
+```php
+<?php
+
+use Signplus\Client;
+
+$sdk = new Client(accessToken: 'YOUR_TOKEN');
+
+$response = $sdk->signplus->downloadEnvelopeCertificate(
   envelopeId: "envelope_id"
 );
 
@@ -709,7 +779,7 @@ $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
 
 $input = new Models\SetEnvelopeExpirationRequest(
-  expiresAt: 3
+  expiresAt: 1
 );
 
 $response = $sdk->signplus->setEnvelopeExpirationDate(
@@ -869,11 +939,11 @@ $annotationType = Models\AnnotationType::Text;
 $input = new Models\AddAnnotationRequest(
   recipientId: "recipient_id",
   documentId: "document_id",
-  page: 8,
-  x: 7.12,
-  y: 3.31,
-  width: 0.84,
-  height: 3.51,
+  page: 7,
+  x: 2.27,
+  y: 4.71,
+  width: 0.96,
+  height: 6.36,
   required: true,
   type: $annotationType,
   signature: $annotationSignature,
@@ -998,8 +1068,8 @@ $input = new Models\ListTemplatesRequest(
   name: "name",
   tags: [],
   ids: [],
-  first: 4,
-  last: 123,
+  first: 2,
+  last: 5,
   after: "after",
   before: "before",
   orderField: $templateOrderField,
@@ -1499,11 +1569,11 @@ $annotationType = Models\AnnotationType::Text;
 $input = new Models\AddAnnotationRequest(
   recipientId: "recipient_id",
   documentId: "document_id",
-  page: 8,
-  x: 7.12,
-  y: 3.31,
-  width: 0.84,
-  height: 3.51,
+  page: 7,
+  x: 2.27,
+  y: 4.71,
+  width: 0.96,
+  height: 6.36,
   required: true,
   type: $annotationType,
   signature: $annotationSignature,

@@ -12,4 +12,5 @@ enum TemplateRecipientRole: string
     case Signer = 'SIGNER';
     case ReceivesCopy = 'RECEIVES_COPY';
     case InPersonSigner = 'IN_PERSON_SIGNER';
+    case Sender = 'SENDER';
 }
