@@ -19,5 +19,6 @@
     | documents | array | ❌ |  |
     | notification | model | ❌ |  |
     | dynamicFields | array | ❌ | List of dynamic fields |
+    | attachments | model | ❌ |  |
 
 

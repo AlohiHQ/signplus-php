@@ -93,6 +93,9 @@ class Envelope
     #[SerializedName('notification')]
     public ?EnvelopeNotification $notification;
 
+    #[SerializedName('attachments')]
+    public ?EnvelopeAttachments $attachments;
+
     public function __construct(
         ?string $id = null,
         ?string $name = null,
@@ -108,7 +111,8 @@ class Envelope
         ?bool $isDuplicable = null,
         ?array $signingSteps = [],
         ?array $documents = [],
-        ?EnvelopeNotification $notification = null
+        ?EnvelopeNotification $notification = null,
+        ?EnvelopeAttachments $attachments = null
     ) {
         $this->id = $id;
         $this->name = $name;
@@ -125,5 +129,6 @@ class Envelope
         $this->signingSteps = $signingSteps;
         $this->documents = $documents;
         $this->notification = $notification;
+        $this->attachments = $attachments;
     }
 }

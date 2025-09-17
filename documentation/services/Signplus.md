@@ -16,6 +16,9 @@ A list of all methods in the `Signplus` service. Click on the method name to vie
 |[add_envelope_document](#add_envelope_document)| Add envelope document |
 |[set_envelope_dynamic_fields](#set_envelope_dynamic_fields)| Set envelope dynamic fields |
 |[add_envelope_signing_steps](#add_envelope_signing_steps)| Add envelope signing steps |
+|[set_envelope_attachments_settings](#set_envelope_attachments_settings)| Set envelope attachment settings |
+|[set_envelope_attachments_placeholders](#set_envelope_attachments_placeholders)| Placeholders to be set, completely replacing the existing ones. |
+|[get_attachment_file](#get_attachment_file)| Get envelope attachment file |
 |[send_envelope](#send_envelope)| Send envelope for signature |
 |[duplicate_envelope](#duplicate_envelope)| Duplicate envelope |
 |[void_envelope](#void_envelope)| Void envelope |
@@ -44,6 +47,8 @@ A list of all methods in the `Signplus` service. Click on the method name to vie
 |[get_document_template_annotations](#get_document_template_annotations)| Get document template annotations |
 |[add_template_annotation](#add_template_annotation)| Add template annotation |
 |[delete_template_annotation](#delete_template_annotation)| Delete template annotation |
+|[set_template_attachments_settings](#set_template_attachments_settings)| Set template attachment settings |
+|[set_template_attachments_placeholders](#set_template_attachments_placeholders)| Placeholders to be set, completely replacing the existing ones. |
 |[create_webhook](#create_webhook)| Create webhook |
 |[list_webhooks](#list_webhooks)| List webhooks |
 |[delete_webhook](#delete_webhook)| Delete webhook |
@@ -81,7 +86,7 @@ $envelopeLegalityLevel = Models\EnvelopeLegalityLevel::Ses;
 $input = new Models\CreateEnvelopeRequest(
   name: "name",
   legalityLevel: $envelopeLegalityLevel,
-  expiresAt: 8,
+  expiresAt: 6,
   comment: "comment",
   sandbox: true
 );
@@ -174,11 +179,11 @@ $input = new Models\ListEnvelopesRequest(
   statuses: [],
   folderIds: [],
   onlyRootFolder: true,
-  dateFrom: 4,
-  dateTo: 7,
+  dateFrom: 123,
+  dateTo: 5,
   uid: "uid",
-  first: 8,
-  last: 9,
+  first: 7,
+  last: 3,
   after: "after",
   before: "before",
   orderField: $envelopeOrderField,
@@ -525,6 +530,138 @@ $response = $sdk->signplus->addEnvelopeSigningSteps(
 print_r($response);
 ```
 
+## set_envelope_attachments_settings
+
+Set envelope attachment settings
+
+
+- HTTP Method: `PUT`
+- Endpoint: `/envelope/{envelope_id}/attachments/settings`
+
+**Parameters**
+
+| Name    | Type| Required | Description |
+| :-------- | :----------| :----------| :----------|
+| input | Models\SetEnvelopeAttachmentsSettingsRequest | ✅ | Set envelope attachment settings |
+| $envelopeId | string | ✅ |  |
+
+**Return Type**
+
+`Models\EnvelopeAttachments`
+
+**Example Usage Code Snippet**
+```php
+<?php
+
+use Signplus\Client;
+use Signplus\Models\AttachmentSettings;
+use Signplus\Models\SetEnvelopeAttachmentsSettingsRequest;
+
+$sdk = new Client(accessToken: 'YOUR_TOKEN');
+
+
+$attachmentSettings = new Models\AttachmentSettings(
+  visibleToRecipients: true
+);
+
+$input = new Models\SetEnvelopeAttachmentsSettingsRequest(
+  settings: $attachmentSettings
+);
+
+$response = $sdk->signplus->setEnvelopeAttachmentsSettings(
+  input: $input,
+  envelopeId: "envelope_id"
+);
+
+print_r($response);
+```
+
+## set_envelope_attachments_placeholders
+
+Placeholders to be set, completely replacing the existing ones.
+
+
+- HTTP Method: `PUT`
+- Endpoint: `/envelope/{envelope_id}/attachments/placeholders`
+
+**Parameters**
+
+| Name    | Type| Required | Description |
+| :-------- | :----------| :----------| :----------|
+| input | Models\SetEnvelopeAttachmentsPlaceholdersRequest | ✅ | Placeholders to be set, completely replacing the existing ones. |
+| $envelopeId | string | ✅ |  |
+
+**Return Type**
+
+`Models\EnvelopeAttachments`
+
+**Example Usage Code Snippet**
+```php
+<?php
+
+use Signplus\Client;
+use Signplus\Models\AttachmentPlaceholderRequest;
+use Signplus\Models\SetEnvelopeAttachmentsPlaceholdersRequest;
+
+$sdk = new Client(accessToken: 'YOUR_TOKEN');
+
+
+$attachmentPlaceholderRequest = new Models\AttachmentPlaceholderRequest(
+  recipientId: "recipient_id",
+  id: "id",
+  name: "name",
+  hint: "hint",
+  required: true,
+  multiple: true
+);
+
+$input = new Models\SetEnvelopeAttachmentsPlaceholdersRequest(
+  placeholders: []
+);
+
+$response = $sdk->signplus->setEnvelopeAttachmentsPlaceholders(
+  input: $input,
+  envelopeId: "envelope_id"
+);
+
+print_r($response);
+```
+
+## get_attachment_file
+
+Get envelope attachment file
+
+
+- HTTP Method: `GET`
+- Endpoint: `/envelope/{envelope_id}/attachments/{file_id}`
+
+**Parameters**
+
+| Name    | Type| Required | Description |
+| :-------- | :----------| :----------| :----------|
+| $envelopeId | string | ✅ |  |
+| $fileId | string | ✅ |  |
+
+**Return Type**
+
+`mixed`
+
+**Example Usage Code Snippet**
+```php
+<?php
+
+use Signplus\Client;
+
+$sdk = new Client(accessToken: 'YOUR_TOKEN');
+
+$response = $sdk->signplus->getAttachmentFile(
+  envelopeId: "envelope_id",
+  fileId: "file_id"
+);
+
+print_r($response);
+```
+
 ## send_envelope
 
 Send envelope for signature
@@ -738,7 +875,7 @@ $sdk = new Client(accessToken: 'YOUR_TOKEN');
 $input = new Models\EnvelopeNotification(
   subject: "subject",
   message: "message",
-  reminderInterval: 1
+  reminderInterval: 123
 );
 
 $response = $sdk->signplus->setEnvelopeNotification(
@@ -939,11 +1076,11 @@ $annotationType = Models\AnnotationType::Text;
 $input = new Models\AddAnnotationRequest(
   recipientId: "recipient_id",
   documentId: "document_id",
-  page: 7,
-  x: 2.27,
-  y: 4.71,
-  width: 0.96,
-  height: 6.36,
+  page: 2,
+  x: 6.59,
+  y: 2.19,
+  width: 4.48,
+  height: 7.11,
   required: true,
   type: $annotationType,
   signature: $annotationSignature,
@@ -1068,8 +1205,8 @@ $input = new Models\ListTemplatesRequest(
   name: "name",
   tags: [],
   ids: [],
-  first: 2,
-  last: 5,
+  first: 8,
+  last: 10,
   after: "after",
   before: "before",
   orderField: $templateOrderField,
@@ -1451,7 +1588,7 @@ $sdk = new Client(accessToken: 'YOUR_TOKEN');
 $input = new Models\EnvelopeNotification(
   subject: "subject",
   message: "message",
-  reminderInterval: 1
+  reminderInterval: 123
 );
 
 $response = $sdk->signplus->setTemplateNotification(
@@ -1569,11 +1706,11 @@ $annotationType = Models\AnnotationType::Text;
 $input = new Models\AddAnnotationRequest(
   recipientId: "recipient_id",
   documentId: "document_id",
-  page: 7,
-  x: 2.27,
-  y: 4.71,
-  width: 0.96,
-  height: 6.36,
+  page: 2,
+  x: 6.59,
+  y: 2.19,
+  width: 4.48,
+  height: 7.11,
   required: true,
   type: $annotationType,
   signature: $annotationSignature,
@@ -1621,6 +1758,103 @@ $sdk = new Client(accessToken: 'YOUR_TOKEN');
 $response = $sdk->signplus->deleteTemplateAnnotation(
   templateId: "template_id",
   annotationId: "annotation_id"
+);
+
+print_r($response);
+```
+
+## set_template_attachments_settings
+
+Set template attachment settings
+
+
+- HTTP Method: `PUT`
+- Endpoint: `/template/{template_id}/attachments/settings`
+
+**Parameters**
+
+| Name    | Type| Required | Description |
+| :-------- | :----------| :----------| :----------|
+| input | Models\SetEnvelopeAttachmentsSettingsRequest | ✅ | Set template attachment settings |
+| $templateId | string | ✅ |  |
+
+**Return Type**
+
+`Models\EnvelopeAttachments`
+
+**Example Usage Code Snippet**
+```php
+<?php
+
+use Signplus\Client;
+use Signplus\Models\AttachmentSettings;
+use Signplus\Models\SetEnvelopeAttachmentsSettingsRequest;
+
+$sdk = new Client(accessToken: 'YOUR_TOKEN');
+
+
+$attachmentSettings = new Models\AttachmentSettings(
+  visibleToRecipients: true
+);
+
+$input = new Models\SetEnvelopeAttachmentsSettingsRequest(
+  settings: $attachmentSettings
+);
+
+$response = $sdk->signplus->setTemplateAttachmentsSettings(
+  input: $input,
+  templateId: "template_id"
+);
+
+print_r($response);
+```
+
+## set_template_attachments_placeholders
+
+Placeholders to be set, completely replacing the existing ones.
+
+
+- HTTP Method: `PUT`
+- Endpoint: `/template/{template_id}/attachments/placeholders`
+
+**Parameters**
+
+| Name    | Type| Required | Description |
+| :-------- | :----------| :----------| :----------|
+| input | Models\SetEnvelopeAttachmentsPlaceholdersRequest | ✅ | Placeholders to be set, completely replacing the existing ones. |
+| $templateId | string | ✅ |  |
+
+**Return Type**
+
+`Models\EnvelopeAttachments`
+
+**Example Usage Code Snippet**
+```php
+<?php
+
+use Signplus\Client;
+use Signplus\Models\AttachmentPlaceholderRequest;
+use Signplus\Models\SetEnvelopeAttachmentsPlaceholdersRequest;
+
+$sdk = new Client(accessToken: 'YOUR_TOKEN');
+
+
+$attachmentPlaceholderRequest = new Models\AttachmentPlaceholderRequest(
+  recipientId: "recipient_id",
+  id: "id",
+  name: "name",
+  hint: "hint",
+  required: true,
+  multiple: true
+);
+
+$input = new Models\SetEnvelopeAttachmentsPlaceholdersRequest(
+  placeholders: []
+);
+
+$response = $sdk->signplus->setTemplateAttachmentsPlaceholders(
+  input: $input,
+  templateId: "template_id"
 );
 
 print_r($response);

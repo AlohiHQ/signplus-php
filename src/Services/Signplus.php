@@ -144,6 +144,44 @@ class Signplus extends BaseService
     }
 
     /**
+     * Set envelope attachment settings
+     */
+    public function setEnvelopeAttachmentsSettings(
+        Models\SetEnvelopeAttachmentsSettingsRequest $input,
+        string $envelopeId
+    ): Models\EnvelopeAttachments {
+        $data = $this->sendRequest('put', "/envelope/{$envelopeId}/attachments/settings", [
+            'json' => Serializer::serialize($input),
+        ]);
+
+        return Serializer::deserialize($data, Models\EnvelopeAttachments::class);
+    }
+
+    /**
+     * Placeholders to be set, completely replacing the existing ones.
+     */
+    public function setEnvelopeAttachmentsPlaceholders(
+        Models\SetEnvelopeAttachmentsPlaceholdersRequest $input,
+        string $envelopeId
+    ): Models\EnvelopeAttachments {
+        $data = $this->sendRequest('put', "/envelope/{$envelopeId}/attachments/placeholders", [
+            'json' => Serializer::serialize($input),
+        ]);
+
+        return Serializer::deserialize($data, Models\EnvelopeAttachments::class);
+    }
+
+    /**
+     * Get envelope attachment file
+     */
+    public function getAttachmentFile(string $envelopeId, string $fileId): mixed
+    {
+        $data = $this->sendRequest('get', "/envelope/{$envelopeId}/attachments/{$fileId}", []);
+
+        return json_decode($data, true);
+    }
+
+    /**
      * Send envelope for signature
      */
     public function sendEnvelope(string $envelopeId): Models\Envelope
@@ -449,6 +487,34 @@ class Signplus extends BaseService
         $data = $this->sendRequest('delete', "/template/{$templateId}/annotation/{$annotationId}", []);
 
         return json_decode($data, true);
+    }
+
+    /**
+     * Set template attachment settings
+     */
+    public function setTemplateAttachmentsSettings(
+        Models\SetEnvelopeAttachmentsSettingsRequest $input,
+        string $templateId
+    ): Models\EnvelopeAttachments {
+        $data = $this->sendRequest('put', "/template/{$templateId}/attachments/settings", [
+            'json' => Serializer::serialize($input),
+        ]);
+
+        return Serializer::deserialize($data, Models\EnvelopeAttachments::class);
+    }
+
+    /**
+     * Placeholders to be set, completely replacing the existing ones.
+     */
+    public function setTemplateAttachmentsPlaceholders(
+        Models\SetEnvelopeAttachmentsPlaceholdersRequest $input,
+        string $templateId
+    ): Models\EnvelopeAttachments {
+        $data = $this->sendRequest('put', "/template/{$templateId}/attachments/placeholders", [
+            'json' => Serializer::serialize($input),
+        ]);
+
+        return Serializer::deserialize($data, Models\EnvelopeAttachments::class);
     }
 
     /**
