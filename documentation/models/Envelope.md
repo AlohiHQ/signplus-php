@@ -21,5 +21,6 @@
     | signingSteps | array | ❌ |  |
     | documents | array | ❌ |  |
     | notification | model | ❌ |  |
+    | attachments | model | ❌ |  |
 
 

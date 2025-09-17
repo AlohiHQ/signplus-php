@@ -82,6 +82,9 @@ class Template
     #[SerializedName('dynamic_fields')]
     public ?array $dynamicFields;
 
+    #[SerializedName('attachments')]
+    public ?EnvelopeAttachments $attachments;
+
     public function __construct(
         ?string $id = null,
         ?string $name = null,
@@ -95,7 +98,8 @@ class Template
         ?array $signingSteps = [],
         ?array $documents = [],
         ?EnvelopeNotification $notification = null,
-        ?array $dynamicFields = []
+        ?array $dynamicFields = [],
+        ?EnvelopeAttachments $attachments = null
     ) {
         $this->id = $id;
         $this->name = $name;
@@ -110,5 +114,6 @@ class Template
         $this->documents = $documents;
         $this->notification = $notification;
         $this->dynamicFields = $dynamicFields;
+        $this->attachments = $attachments;
     }
 }
