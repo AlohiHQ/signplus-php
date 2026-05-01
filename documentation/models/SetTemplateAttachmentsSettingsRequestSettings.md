@@ -1,0 +1,11 @@
+# SetTemplateAttachmentsSettingsRequestSettings
+
+
+
+**Properties**
+
+| Name | Type | Required | Description |
+| :-------- | :----------| :----------| :----------|
+    | visible_to_recipients | bool | ❌ |  |
+
+

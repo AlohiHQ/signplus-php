@@ -6,6 +6,6 @@
 
 | Name | Type | Required | Description |
 | :-------- | :----------| :----------| :----------|
-    | comment | string | ✅ | Comment for the template |
+    | comment | string | ❌ |  |
 
 

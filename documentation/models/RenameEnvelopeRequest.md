@@ -6,6 +6,6 @@
 
 | Name | Type | Required | Description |
 | :-------- | :----------| :----------| :----------|
-    | name | string | ❌ | Name of the envelope |
+    | name | string | ❌ |  |
 
 

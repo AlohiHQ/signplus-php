@@ -1,10 +1,13 @@
 {
   "name": "alohi/signplus",
-  "version": "2.4.0",
+  "version": "3.0.0",
+  "support": {
+    "source": "https://github.com/alohihq/signplus-sharp"
+  },
   "type": "library",
   "license": "MIT",
   "require": {
-    "php": "^8.0",
+    "php": "^8.1",
     "symfony/serializer": "^7.0",
     "guzzlehttp/guzzle": "^7.0",
     "symfony/property-info": "^7.0",

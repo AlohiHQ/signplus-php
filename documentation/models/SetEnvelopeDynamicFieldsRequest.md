@@ -6,6 +6,6 @@
 
 | Name | Type | Required | Description |
 | :-------- | :----------| :----------| :----------|
-    | dynamicFields | array | ✅ | List of dynamic fields |
+    | dynamic_fields | [DynamicFields](DynamicFields.md)[] | ❌ |  |
 
 
