@@ -1,0 +1,151 @@
+{
+  "endpoints": {
+    "/envelope/from_template/{template_id}": {
+      "post": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\CreateEnvelopeFromTemplateRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$input = new Models\\CreateEnvelopeFromTemplateRequest(\n  name: \"dwL1t\",\n  comment: \"string\",\n  sandbox: false\n);\n\n$response = $sdk->templateId->createEnvelopeFromTemplate(\n  input: $input,\n  accept: \"application/json\",\n  templateId: \"template_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/signed_documents": {
+      "get": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->signedDocuments->downloadEnvelopeSignedDocuments(\n  certificateOfCompletion: \"true\",\n  accept: \"application/pdf\",\n  envelopeId: \"envelope_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/certificate": {
+      "get": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->certificate->downloadEnvelopeCertificate(\n  accept: \"application/pdf\",\n  envelopeId: \"envelope_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/document/{document_id}": {
+      "get": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->documentId->getEnvelopeDocument(\n  accept: \"application/json\",\n  envelopeId: \"envelope_id\",\n  documentId: \"document_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/document": {
+      "post": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\AddEnvelopeDocumentRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$input = new Models\\AddEnvelopeDocumentRequest(\n  file: \"\"\n);\n\n$response = $sdk->document->addEnvelopeDocument(\n  input: $input,\n  accept: \"application/json\",\n  envelopeId: \"envelope_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/documents": {
+      "get": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->documents->getEnvelopeDocuments(\n  accept: \"application/json\",\n  envelopeId: \"envelope_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/dynamic_fields": {
+      "put": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\DynamicFields;\nuse Signplus\\Models\\SetEnvelopeDynamicFieldsRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$dynamicFields = new Models\\DynamicFields(\n  name: \"string\",\n  value: \"string\"\n);\n\n$input = new Models\\SetEnvelopeDynamicFieldsRequest(\n  dynamicFields: []\n);\n\n$response = $sdk->dynamicFields->setEnvelopeDynamicFields(\n  input: $input,\n  accept: \"application/json\",\n  envelopeId: \"envelope_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/signing_steps": {
+      "post": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\AddEnvelopeSigningStepsRequestSigningSteps;\nuse Signplus\\Models\\AddEnvelopeSigningStepsRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$verification = new Models\\Verification(\n  type: \"SMS\",\n  value: \"string\"\n);\n\n$signingStepsRecipients1 = new Models\\SigningStepsRecipients1(\n  name: \"string\",\n  email: \"string\",\n  role: \"IN_PERSON_SIGNER\",\n  id: \"string\",\n  uid: \"string\",\n  verification: $verification\n);\n\n$addEnvelopeSigningStepsRequestSigningSteps = new Models\\AddEnvelopeSigningStepsRequestSigningSteps(\n  recipients: []\n);\n\n$input = new Models\\AddEnvelopeSigningStepsRequest(\n  signingSteps: []\n);\n\n$response = $sdk->signingSteps->addEnvelopeSigningSteps(\n  input: $input,\n  accept: \"application/json\",\n  envelopeId: \"envelope_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/attachments/settings": {
+      "put": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\SetEnvelopeAttachmentsSettingsRequestSettings;\nuse Signplus\\Models\\SetEnvelopeAttachmentsSettingsRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$setEnvelopeAttachmentsSettingsRequestSettings = new Models\\SetEnvelopeAttachmentsSettingsRequestSettings(\n  visibleToRecipients: false\n);\n\n$input = new Models\\SetEnvelopeAttachmentsSettingsRequest(\n  settings: $setEnvelopeAttachmentsSettingsRequestSettings\n);\n\n$response = $sdk->settings->setEnvelopeAttachmentsSettings(\n  input: $input,\n  accept: \"application/json\",\n  envelopeId: \"envelope_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/attachments/placeholders": {
+      "put": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\SetEnvelopeAttachmentsPlaceholdersRequestPlaceholders;\nuse Signplus\\Models\\SetEnvelopeAttachmentsPlaceholdersRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$setEnvelopeAttachmentsPlaceholdersRequestPlaceholders = new Models\\SetEnvelopeAttachmentsPlaceholdersRequestPlaceholders(\n  recipientId: \"string\",\n  name: \"string\",\n  required: false,\n  multiple: false,\n  id: \"string\",\n  hint: \"string\"\n);\n\n$input = new Models\\SetEnvelopeAttachmentsPlaceholdersRequest(\n  placeholders: []\n);\n\n$response = $sdk->placeholders->setEnvelopeAttachmentsPlaceholders(\n  input: $input,\n  accept: \"application/json\",\n  envelopeId: \"envelope_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/attachments/{file_id}": {
+      "get": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->fileId->getAttachmentFile(\n  accept: \"application/octet-stream\",\n  envelopeId: \"envelope_id\",\n  fileId: \"file_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/send": {
+      "post": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->send->sendEnvelope(\n  accept: \"application/json\",\n  envelopeId: \"envelope_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/duplicate": {
+      "post": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->duplicate->duplicateEnvelope(\n  accept: \"application/json\",\n  envelopeId: \"envelope_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/void": {
+      "put": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->void_->voidEnvelope(\n  accept: \"application/json\",\n  envelopeId: \"envelope_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/rename": {
+      "put": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\RenameEnvelopeRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$input = new Models\\RenameEnvelopeRequest(\n  name: \"string\"\n);\n\n$response = $sdk->rename->renameEnvelope(\n  input: $input,\n  accept: \"application/json\",\n  envelopeId: \"envelope_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/set_comment": {
+      "put": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\SetEnvelopeCommentRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$input = new Models\\SetEnvelopeCommentRequest(\n  comment: \"string\"\n);\n\n$response = $sdk->setComment->setEnvelopeComment(\n  input: $input,\n  accept: \"application/json\",\n  envelopeId: \"envelope_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/set_notification": {
+      "put": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\SetEnvelopeNotificationRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$input = new Models\\SetEnvelopeNotificationRequest(\n  subject: \"string\",\n  message: \"string\",\n  reminderInterval: 4732\n);\n\n$response = $sdk->setNotification->setEnvelopeNotification(\n  input: $input,\n  accept: \"application/json\",\n  envelopeId: \"envelope_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/set_expiration_date": {
+      "put": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\SetEnvelopeExpirationDateRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$input = new Models\\SetEnvelopeExpirationDateRequest(\n  expiresAt: 5958\n);\n\n$response = $sdk->setExpirationDate->setEnvelopeExpirationDate(\n  input: $input,\n  accept: \"application/json\",\n  envelopeId: \"envelope_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/set_legality_level": {
+      "put": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\SetEnvelopeLegalityLevelRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$input = new Models\\SetEnvelopeLegalityLevelRequest(\n  legalityLevel: \"SES\"\n);\n\n$response = $sdk->setLegalityLevel->setEnvelopeLegalityLevel(\n  input: $input,\n  accept: \"application/json\",\n  envelopeId: \"envelope_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/annotations/{document_id}": {
+      "get": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->envelopeEnvelopeIdAnnotationsDocumentId->getEnvelopeDocumentAnnotations(\n  accept: \"application/json\",\n  envelopeId: \"envelope_id\",\n  documentId: \"document_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/annotations": {
+      "get": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->annotations->getEnvelopeAnnotations(\n  accept: \"application/json\",\n  envelopeId: \"envelope_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/annotation/{annotation_id}": {
+      "delete": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->annotationId->deleteEnvelopeAnnotation(\n  envelopeId: \"envelope_id\",\n  annotationId: \"annotation_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}/annotation": {
+      "post": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\AddEnvelopeAnnotationRequestSignature;\nuse Signplus\\Models\\AddEnvelopeAnnotationRequestInitials;\nuse Signplus\\Models\\AddEnvelopeAnnotationRequestText;\nuse Signplus\\Models\\AddEnvelopeAnnotationRequestDatetime;\nuse Signplus\\Models\\AddEnvelopeAnnotationRequestCheckbox;\nuse Signplus\\Models\\AddEnvelopeAnnotationRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$addEnvelopeAnnotationRequestSignature = new Models\\AddEnvelopeAnnotationRequestSignature(\n  id: \"string\"\n);\n\n\n$addEnvelopeAnnotationRequestInitials = new Models\\AddEnvelopeAnnotationRequestInitials(\n  id: \"string\"\n);\n\n\n$textFont1 = new Models\\TextFont1(\n  family: \"SANS\",\n  italic: false,\n  bold: false\n);\n\n$addEnvelopeAnnotationRequestText = new Models\\AddEnvelopeAnnotationRequestText(\n  size: 6190.822136605691,\n  color: 6489.781325519173,\n  value: \"string\",\n  tooltip: \"string\",\n  dynamicFieldName: \"string\",\n  font: $textFont1\n);\n\n\n$datetimeFont1 = new Models\\DatetimeFont1(\n  family: \"SERIF\",\n  italic: false,\n  bold: false\n);\n\n$addEnvelopeAnnotationRequestDatetime = new Models\\AddEnvelopeAnnotationRequestDatetime(\n  size: 3773.1065479576364,\n  font: $datetimeFont1,\n  color: \"string\",\n  autoFill: true,\n  timezone: \"string\",\n  timestamp: 6868,\n  format: \"MDY_TEXT_SPACE_SHORT\"\n);\n\n\n$addEnvelopeAnnotationRequestCheckbox = new Models\\AddEnvelopeAnnotationRequestCheckbox(\n  checked: false,\n  style: \"SQUARE_CHECK\"\n);\n\n$input = new Models\\AddEnvelopeAnnotationRequest(\n  documentId: \"string\",\n  page: 6387,\n  x: 4410.13346533615,\n  y: 5148.888749329143,\n  width: 3756.0248729763225,\n  height: 4178.76189579703,\n  type: \"INITIALS\",\n  recipientId: \"string\",\n  required: false,\n  signature: $addEnvelopeAnnotationRequestSignature,\n  initials: $addEnvelopeAnnotationRequestInitials,\n  text: $addEnvelopeAnnotationRequestText,\n  datetime: $addEnvelopeAnnotationRequestDatetime,\n  checkbox: $addEnvelopeAnnotationRequestCheckbox\n);\n\n$response = $sdk->annotation->addEnvelopeAnnotation(\n  input: $input,\n  accept: \"application/json\",\n  envelopeId: \"envelope_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope/{envelope_id}": {
+      "get": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->envelopeId->getEnvelope(\n  accept: \"application/json\",\n  envelopeId: \"envelope_id\"\n);\n\nprint_r($response);\n",
+      "delete": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->envelopeId->deleteEnvelope(\n  envelopeId: \"envelope_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelope": {
+      "post": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\CreateEnvelopeRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$input = new Models\\CreateEnvelopeRequest(\n  name: \"7ox22\",\n  legalityLevel: \"SES\",\n  expiresAt: 5681,\n  comment: \"string\",\n  sandbox: false\n);\n\n$response = $sdk->envelope->createEnvelope(\n  input: $input,\n  accept: \"application/json\"\n);\n\nprint_r($response);\n"
+    },
+    "/envelopes": {
+      "post": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\ListEnvelopesRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$input = new Models\\ListEnvelopesRequest(\n  name: \"string\",\n  tags: [],\n  comment: \"string\",\n  ids: [],\n  statuses: [],\n  folderIds: [],\n  onlyRootFolder: false,\n  dateFrom: 6508,\n  dateTo: 690,\n  uid: \"string\",\n  first: 6875,\n  last: 4384,\n  after: \"string\",\n  before: \"string\",\n  orderField: \"LAST_DOCUMENT_CHANGE\",\n  ascending: false,\n  includeTrash: false\n);\n\n$response = $sdk->envelopes->listEnvelopes(\n  input: $input,\n  accept: \"application/json\"\n);\n\nprint_r($response);\n"
+    },
+    "/template/{template_id}/duplicate": {
+      "post": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->templateTemplateIdDuplicate->duplicateTemplate(\n  accept: \"application/json\",\n  templateId: \"template_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/template/{template_id}/document/{document_id}": {
+      "get": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->templateTemplateIdDocumentDocumentId->getTemplateDocument(\n  accept: \"application/json\",\n  templateId: \"template_id\",\n  documentId: \"document_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/template/{template_id}/document": {
+      "post": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\AddTemplateDocumentRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$input = new Models\\AddTemplateDocumentRequest(\n  file: \"\"\n);\n\n$response = $sdk->templateTemplateIdDocument->addTemplateDocument(\n  input: $input,\n  accept: \"application/json\",\n  templateId: \"template_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/template/{template_id}/documents": {
+      "get": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->templateTemplateIdDocuments->getTemplateDocuments(\n  accept: \"application/json\",\n  templateId: \"template_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/template/{template_id}/signing_steps": {
+      "post": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\AddTemplateSigningStepsRequestSigningSteps;\nuse Signplus\\Models\\AddTemplateSigningStepsRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$signingStepsRecipients2 = new Models\\SigningStepsRecipients2(\n  id: \"string\",\n  uid: \"string\",\n  name: \"string\",\n  email: \"string\",\n  role: \"RECEIVES_COPY\"\n);\n\n$addTemplateSigningStepsRequestSigningSteps = new Models\\AddTemplateSigningStepsRequestSigningSteps(\n  recipients: []\n);\n\n$input = new Models\\AddTemplateSigningStepsRequest(\n  signingSteps: []\n);\n\n$response = $sdk->templateTemplateIdSigningSteps->addTemplateSigningSteps(\n  input: $input,\n  accept: \"application/json\",\n  templateId: \"template_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/template/{template_id}/rename": {
+      "put": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\RenameTemplateRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$input = new Models\\RenameTemplateRequest(\n  name: \"string\"\n);\n\n$response = $sdk->templateTemplateIdRename->renameTemplate(\n  input: $input,\n  accept: \"application/json\",\n  templateId: \"template_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/template/{template_id}/set_comment": {
+      "put": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\SetTemplateCommentRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$input = new Models\\SetTemplateCommentRequest(\n  comment: \"string\"\n);\n\n$response = $sdk->templateTemplateIdSetComment->setTemplateComment(\n  input: $input,\n  accept: \"application/json\",\n  templateId: \"template_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/template/{template_id}/set_notification": {
+      "put": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\SetTemplateNotificationRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$input = new Models\\SetTemplateNotificationRequest(\n  subject: \"string\",\n  message: \"string\",\n  reminderInterval: 4732\n);\n\n$response = $sdk->templateTemplateIdSetNotification->setTemplateNotification(\n  input: $input,\n  accept: \"application/json\",\n  templateId: \"template_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/template/{template_id}/annotations/{document_id}": {
+      "get": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->templateTemplateIdAnnotationsDocumentId->getDocumentTemplateAnnotations(\n  accept: \"application/json\",\n  templateId: \"template_id\",\n  documentId: \"document_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/template/{template_id}/annotations": {
+      "get": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->templateTemplateIdAnnotations->getTemplateAnnotations(\n  accept: \"application/json\",\n  templateId: \"template_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/template/{template_id}/annotation/{annotation_id}": {
+      "delete": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->templateTemplateIdAnnotationAnnotationId->deleteTemplateAnnotation(\n  templateId: \"template_id\",\n  annotationId: \"annotation_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/template/{template_id}/annotation": {
+      "post": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\AddTemplateAnnotationRequestSignature;\nuse Signplus\\Models\\AddTemplateAnnotationRequestInitials;\nuse Signplus\\Models\\AddTemplateAnnotationRequestText;\nuse Signplus\\Models\\AddTemplateAnnotationRequestDatetime;\nuse Signplus\\Models\\AddTemplateAnnotationRequestCheckbox;\nuse Signplus\\Models\\AddTemplateAnnotationRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$addTemplateAnnotationRequestSignature = new Models\\AddTemplateAnnotationRequestSignature(\n  id: \"string\"\n);\n\n\n$addTemplateAnnotationRequestInitials = new Models\\AddTemplateAnnotationRequestInitials(\n  id: \"string\"\n);\n\n\n$textFont2 = new Models\\TextFont2(\n  family: \"SANS\",\n  italic: false,\n  bold: false\n);\n\n$addTemplateAnnotationRequestText = new Models\\AddTemplateAnnotationRequestText(\n  size: 6190.822136605691,\n  color: 6489.781325519173,\n  value: \"string\",\n  tooltip: \"string\",\n  dynamicFieldName: \"string\",\n  font: $textFont2\n);\n\n\n$datetimeFont2 = new Models\\DatetimeFont2(\n  family: \"SERIF\",\n  italic: false,\n  bold: false\n);\n\n$addTemplateAnnotationRequestDatetime = new Models\\AddTemplateAnnotationRequestDatetime(\n  size: 3773.1065479576364,\n  font: $datetimeFont2,\n  color: \"string\",\n  autoFill: true,\n  timezone: \"string\",\n  timestamp: 6868,\n  format: \"MDY_TEXT_SPACE_SHORT\"\n);\n\n\n$addTemplateAnnotationRequestCheckbox = new Models\\AddTemplateAnnotationRequestCheckbox(\n  checked: false,\n  style: \"SQUARE_CHECK\"\n);\n\n$input = new Models\\AddTemplateAnnotationRequest(\n  documentId: \"string\",\n  page: 6387,\n  x: 4410.13346533615,\n  y: 5148.888749329143,\n  width: 3756.0248729763225,\n  height: 4178.76189579703,\n  type: \"INITIALS\",\n  recipientId: \"string\",\n  required: false,\n  signature: $addTemplateAnnotationRequestSignature,\n  initials: $addTemplateAnnotationRequestInitials,\n  text: $addTemplateAnnotationRequestText,\n  datetime: $addTemplateAnnotationRequestDatetime,\n  checkbox: $addTemplateAnnotationRequestCheckbox\n);\n\n$response = $sdk->templateTemplateIdAnnotation->addTemplateAnnotation(\n  input: $input,\n  accept: \"application/json\",\n  templateId: \"template_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/template/{template_id}/attachments/settings": {
+      "put": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\SetTemplateAttachmentsSettingsRequestSettings;\nuse Signplus\\Models\\SetTemplateAttachmentsSettingsRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$setTemplateAttachmentsSettingsRequestSettings = new Models\\SetTemplateAttachmentsSettingsRequestSettings(\n  visibleToRecipients: false\n);\n\n$input = new Models\\SetTemplateAttachmentsSettingsRequest(\n  settings: $setTemplateAttachmentsSettingsRequestSettings\n);\n\n$response = $sdk->templateTemplateIdAttachmentsSettings->setTemplateAttachmentsSettings(\n  input: $input,\n  accept: \"application/json\",\n  templateId: \"template_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/template/{template_id}/attachments/placeholders": {
+      "put": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\SetTemplateAttachmentsPlaceholdersRequestPlaceholders;\nuse Signplus\\Models\\SetTemplateAttachmentsPlaceholdersRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$setTemplateAttachmentsPlaceholdersRequestPlaceholders = new Models\\SetTemplateAttachmentsPlaceholdersRequestPlaceholders(\n  recipientId: \"string\",\n  name: \"string\",\n  required: false,\n  multiple: false,\n  id: \"string\",\n  hint: \"string\"\n);\n\n$input = new Models\\SetTemplateAttachmentsPlaceholdersRequest(\n  placeholders: []\n);\n\n$response = $sdk->templateTemplateIdAttachmentsPlaceholders->setTemplateAttachmentsPlaceholders(\n  input: $input,\n  accept: \"application/json\",\n  templateId: \"template_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/template/{template_id}": {
+      "get": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->templateTemplateId->getTemplate(\n  accept: \"application/json\",\n  templateId: \"template_id\"\n);\n\nprint_r($response);\n",
+      "delete": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->templateTemplateId->deleteTemplate(\n  templateId: \"template_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/template": {
+      "post": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\CreateTemplateRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$input = new Models\\CreateTemplateRequest(\n  name: \"rEATXel\"\n);\n\n$response = $sdk->template->createTemplate(\n  input: $input,\n  accept: \"application/json\"\n);\n\nprint_r($response);\n"
+    },
+    "/templates": {
+      "post": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\ListTemplatesRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$input = new Models\\ListTemplatesRequest(\n  name: \"string\",\n  tags: [],\n  ids: [],\n  first: 7297,\n  last: 8379,\n  after: \"string\",\n  before: \"string\",\n  orderField: \"TEMPLATE_NAME\",\n  ascending: false\n);\n\n$response = $sdk->templates->listTemplates(\n  input: $input,\n  accept: \"application/json\"\n);\n\nprint_r($response);\n"
+    },
+    "/webhook/{webhook_id}": {
+      "delete": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->webhookId->deleteWebhook(\n  webhookId: \"webhook_id\"\n);\n\nprint_r($response);\n"
+    },
+    "/webhook": {
+      "post": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\CreateWebhookRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$input = new Models\\CreateWebhookRequest(\n  event: \"ENVELOPE_AUDIT_TRAIL\",\n  target: \"string\"\n);\n\n$response = $sdk->webhook->createWebhook(\n  input: $input,\n  accept: \"application/json\"\n);\n\nprint_r($response);\n"
+    },
+    "/webhooks": {
+      "post": "<?php\n\nuse Signplus\\Client;\nuse Signplus\\Models\\ListWebhooksRequest;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n\n$input = new Models\\ListWebhooksRequest(\n  webhookId: \"string\",\n  event: \"ENVELOPE_COMPLETED\"\n);\n\n$response = $sdk->webhooks->listWebhooks(\n  input: $input,\n  accept: \"application/json\"\n);\n\nprint_r($response);\n"
+    }
+  },
+  "example": "<?php\n\nuse Signplus\\Client;\n\n$sdk = new Client(accessToken: 'YOUR_TOKEN');\n\n$response = $sdk->envelopeId->deleteEnvelope(\n  envelopeId: \"envelope_id\"\n);\n\nprint_r($response);\n",
+  "authentication": {
+    "bearer": {
+      "constructor": "new Client(accessToken: \"YOUR_ACCESS_TOKEN\");",
+      "setter": "$sdk->setAccessToken(\"YOUR_ACCESS_TOKEN\")"
+    }
+  }
+}
