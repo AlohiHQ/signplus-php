@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Signplus\Models;
-
 use Signplus\Client;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');

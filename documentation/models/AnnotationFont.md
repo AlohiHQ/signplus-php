@@ -6,8 +6,8 @@
 
 | Name | Type | Required | Description |
 | :-------- | :----------| :----------| :----------|
-    | family | model | ❌ | Font family of the text |
-    | italic | boolean | ❌ | Whether the text is italic |
-    | bold | boolean | ❌ | Whether the text is bold |
+    | family | [AnnotationFontFamily](AnnotationFontFamily.md) | ❌ | Font family of the text |
+    | italic | bool | ❌ | Whether the text is italic |
+    | bold | bool | ❌ | Whether the text is bold |
 
 

@@ -1,17 +1,17 @@
 <?php
 
-namespace Signplus\Models;
+declare(strict_types=1);
 
-use Symfony\Component\Serializer\Annotation\SerializedName;
+namespace Signplus\Models;
 
 /**
  * Type of the annotation
  */
 enum AnnotationType: string
 {
-    case Text = 'TEXT';
-    case Signature = 'SIGNATURE';
-    case Initials = 'INITIALS';
-    case Checkbox = 'CHECKBOX';
-    case Date = 'DATE';
+  case Text = 'TEXT';
+  case Signature = 'SIGNATURE';
+  case Initials = 'INITIALS';
+  case Checkbox = 'CHECKBOX';
+  case Date = 'DATE';
 }

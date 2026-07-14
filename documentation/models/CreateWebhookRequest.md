@@ -6,7 +6,7 @@
 
 | Name | Type | Required | Description |
 | :-------- | :----------| :----------| :----------|
-    | event | model | ✅ | Event of the webhook |
+    | event | [WebhookEvent](WebhookEvent.md) | ✅ | Event of the webhook |
     | target | string | ✅ | URL of the webhook target |
 
 

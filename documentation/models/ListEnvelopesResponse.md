@@ -6,8 +6,8 @@
 
 | Name | Type | Required | Description |
 | :-------- | :----------| :----------| :----------|
-    | hasNextPage | boolean | ❌ | Whether there is a next page |
-    | hasPreviousPage | boolean | ❌ | Whether there is a previous page |
-    | envelopes | array | ❌ |  |
+    | has_next_page | bool | ❌ | Whether there is a next page |
+    | has_previous_page | bool | ❌ | Whether there is a previous page |
+    | envelopes | [Envelope](Envelope.md)[] | ❌ |  |
 
 

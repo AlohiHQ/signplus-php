@@ -6,6 +6,6 @@
 
 | Name | Type | Required | Description |
 | :-------- | :----------| :----------| :----------|
-    | signingSteps | array | ✅ | List of signing steps |
+    | signing_steps | [TemplateSigningStep](TemplateSigningStep.md)[] | ✅ | List of signing steps |
 
 

@@ -6,7 +6,7 @@
 
 | Name | Type | Required | Description |
 | :-------- | :----------| :----------| :----------|
-    | settings | model | ❌ |  |
-    | recipients | array | ❌ |  |
+    | settings | [AttachmentSettings](AttachmentSettings.md) | ❌ |  |
+    | recipients | [AttachmentPlaceholdersPerRecipient](AttachmentPlaceholdersPerRecipient.md)[] | ❌ |  |
 
 

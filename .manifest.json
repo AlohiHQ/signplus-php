@@ -1,24 +1,27 @@
 {
-  "liblabVersion": "2.25.46",
-  "date": "2025-09-17T12:01:27.585Z",
+  "sdkGenVersion": "1.6.0",
+  "date": "2026-07-14T05:00:08.634Z",
   "config": {
-    "apiId": 2744,
-    "sdkName": "signplus",
-    "sdkVersion": "2.4.0",
-    "languages": ["php"],
-    "auth": ["bearer"],
-    "docs": [],
-    "liblabVersion": "2",
-    "deliveryMethods": ["zip"],
-    "rawConfig": {
-      "sdkName": "signplus",
-      "apiVersion": "2.5.0",
-      "apiName": "signplus-api",
-      "specFilePath": "openapi.yaml",
-      "languages": ["csharp", "go", "python", "typescript", "java", "php"],
-      "auth": ["bearer"],
-      "customizations": {
-        "includeOptionalSnippetParameters": true,
+    "sdkVersion": "1.0.0",
+    "auth": [
+      "bearer"
+    ],
+    "apiVersion": "2.5.0",
+    "publishing": {
+      "githubOrg": "alohihq",
+      "releaseBranch": "main"
+    },
+    "languageOptions": {
+      "java": {
+        "githubRepoName": "signplus-java",
+        "retry": {
+          "enabled": true,
+          "maxAttempts": 3,
+          "retryDelay": 150
+        },
+        "license": {
+          "type": "MIT"
+        },
         "authentication": {
           "access": {
             "prefix": "Bearer"
@@ -26,116 +29,12 @@
         },
         "devContainer": false,
         "generateEnv": true,
-        "inferServiceNames": false,
-        "injectedModels": [],
-        "license": {
-          "type": "MIT"
-        },
         "responseHeaders": false,
-        "retry": {
-          "enabled": true,
-          "maxAttempts": 3,
-          "retryDelay": 150
-        }
-      },
-      "languageOptions": {
-        "python": {
-          "alwaysInitializeOptionals": false,
-          "pypiPackageName": "signplus-python",
-          "githubRepoName": "signplus-python",
-          "ignoreFiles": [],
-          "sdkVersion": "1.4.0",
-          "liblabVersion": "2",
-          "additionalConstructorParameters": []
-        },
-        "java": {
-          "githubRepoName": "signplus-java",
-          "groupId": "com.alohi",
-          "artifactId": "signplus",
-          "sdkVersion": "2.4.0",
-          "liblabVersion": "2",
-          "developers": [
-            {
-              "name": "Alohi SA",
-              "email": "support@alohi.com",
-              "organization": "Alohi SA",
-              "organizationUrl": "https://www.alohi.com"
-            }
-          ],
-          "additionalConstructorParameters": []
-        },
-        "typescript": {
-          "bundle": false,
-          "exportClassDefault": false,
-          "httpClient": "axios",
-          "npmName": "signplus-typescript",
-          "npmOrg": "alohi",
-          "githubRepoName": "signplus-typescript",
-          "ignoreFiles": [],
-          "sdkVersion": "2.4.0",
-          "liblabVersion": "2",
-          "additionalConstructorParameters": []
-        },
-        "go": {
-          "goModuleName": "github.com/alohihq/signplus-go",
-          "githubRepoName": "signplus-go",
-          "ignoreFiles": [],
-          "sdkVersion": "1.4.0",
-          "liblabVersion": "2",
-          "additionalConstructorParameters": []
-        },
-        "php": {
-          "packageName": "alohi/signplus",
-          "githubRepoName": "signplus-php",
-          "ignoreFiles": [],
-          "sdkVersion": "2.4.0",
-          "liblabVersion": "2",
-          "additionalConstructorParameters": []
-        },
-        "csharp": {
-          "packageId": "Alohi.Signplus",
-          "githubRepoName": "signplus-sharp",
-          "ignoreFiles": [],
-          "sdkVersion": "1.4.0",
-          "liblabVersion": "2"
-        }
-      },
-      "publishing": {
-        "githubOrg": "alohihq"
-      }
-    },
-    "liblabConfigVersion": "1.0.0",
-    "apiVersion": "2.5.0",
-    "apiName": "signplus-api",
-    "specFilePath": "openapi.yaml",
-    "createDocs": false,
-    "languageOptions": {
-      "csharp": {
-        "githubRepoName": "signplus-sharp",
-        "ignoreFiles": [],
-        "liblabVersion": "2",
-        "renameIllegalModelProperties": true,
-        "sdkVersion": "1.4.0",
-        "packageId": "Alohi.Signplus"
-      },
-      "go": {
-        "githubRepoName": "signplus-go",
-        "ignoreFiles": [],
-        "liblabVersion": "2",
-        "renameIllegalModelProperties": true,
-        "sdkVersion": "1.4.0",
-        "goModuleName": "github.com/alohihq/signplus-go",
-        "additionalConstructorParameters": []
-      },
-      "java": {
-        "githubRepoName": "signplus-java",
-        "ignoreFiles": [],
-        "liblabVersion": "2",
-        "renameIllegalModelProperties": true,
-        "sdkVersion": "2.4.0",
+        "includeOptionalSnippetParameters": true,
+        "injectedModels": [],
+        "inferServiceNames": false,
         "groupId": "com.alohi",
         "artifactId": "signplus",
-        "includeKotlinSnippets": false,
         "developers": [
           {
             "name": "Alohi SA",
@@ -143,52 +42,243 @@
             "organization": "Alohi SA",
             "organizationUrl": "https://www.alohi.com"
           }
-        ],
-        "additionalConstructorParameters": []
-      },
-      "python": {
-        "githubRepoName": "signplus-python",
-        "ignoreFiles": [],
-        "liblabVersion": "2",
-        "renameIllegalModelProperties": true,
-        "sdkVersion": "1.4.0",
-        "alwaysInitializeOptionals": false,
-        "additionalConstructorParameters": [],
-        "pypiPackageName": "signplus-python"
-      },
-      "php": {
-        "githubRepoName": "signplus-php",
-        "ignoreFiles": [],
-        "liblabVersion": "2",
-        "renameIllegalModelProperties": true,
-        "sdkVersion": "2.4.0",
-        "additionalConstructorParameters": [],
-        "packageName": "alohi/signplus"
+        ]
       },
       "typescript": {
         "githubRepoName": "signplus-typescript",
-        "ignoreFiles": [],
-        "liblabVersion": "2",
-        "renameIllegalModelProperties": true,
-        "sdkVersion": "2.4.0",
-        "additionalConstructorParameters": [],
-        "bundle": false,
-        "denoteCommon": false,
-        "exportClassDefault": false,
-        "generateEnumAs": "enum",
-        "httpClient": "axios",
+        "retry": {
+          "enabled": true,
+          "maxAttempts": 3,
+          "retryDelay": 150
+        },
+        "license": {
+          "type": "MIT"
+        },
+        "authentication": {
+          "access": {
+            "prefix": "Bearer"
+          }
+        },
+        "devContainer": false,
+        "generateEnv": true,
+        "responseHeaders": false,
+        "includeOptionalSnippetParameters": true,
+        "injectedModels": [],
+        "inferServiceNames": false,
+        "npmOrg": "alohi",
         "npmName": "signplus-typescript",
-        "npmOrg": "alohi"
+        "httpClient": "axios",
+        "bundle": false,
+        "exportClassDefault": false
+      },
+      "python": {
+        "githubRepoName": "signplus-python",
+        "retry": {
+          "enabled": true,
+          "maxAttempts": 3,
+          "retryDelay": 150
+        },
+        "license": {
+          "type": "MIT"
+        },
+        "authentication": {
+          "access": {
+            "prefix": "Bearer"
+          }
+        },
+        "devContainer": false,
+        "generateEnv": true,
+        "responseHeaders": false,
+        "includeOptionalSnippetParameters": true,
+        "injectedModels": [],
+        "inferServiceNames": false,
+        "pypiPackageName": "signplus-python",
+        "classifiers": [
+          "Development Status :: 5 - Production/Stable",
+          "License :: OSI Approved :: MIT License",
+          "Topic :: Software Development"
+        ]
+      },
+      "kotlin": {
+        "retry": {
+          "enabled": true,
+          "maxAttempts": 3,
+          "retryDelay": 150
+        },
+        "license": {
+          "type": "MIT"
+        },
+        "authentication": {
+          "access": {
+            "prefix": "Bearer"
+          }
+        },
+        "devContainer": false,
+        "generateEnv": true,
+        "responseHeaders": false,
+        "includeOptionalSnippetParameters": true,
+        "injectedModels": [],
+        "inferServiceNames": false
+      },
+      "ruby": {
+        "retry": {
+          "enabled": true,
+          "maxAttempts": 3,
+          "retryDelay": 150
+        },
+        "license": {
+          "type": "MIT"
+        },
+        "authentication": {
+          "access": {
+            "prefix": "Bearer"
+          }
+        },
+        "devContainer": false,
+        "generateEnv": true,
+        "responseHeaders": false,
+        "includeOptionalSnippetParameters": true,
+        "injectedModels": [],
+        "inferServiceNames": false
+      },
+      "go": {
+        "githubRepoName": "signplus-sharp",
+        "retry": {
+          "enabled": true,
+          "maxAttempts": 3,
+          "retryDelay": 150
+        },
+        "license": {
+          "type": "MIT"
+        },
+        "authentication": {
+          "access": {
+            "prefix": "Bearer"
+          }
+        },
+        "devContainer": false,
+        "generateEnv": true,
+        "responseHeaders": false,
+        "includeOptionalSnippetParameters": true,
+        "injectedModels": [],
+        "inferServiceNames": false,
+        "goModuleName": "github.com/alohihq/signplus-go"
+      },
+      "csharp": {
+        "githubRepoName": "signplus-sharp",
+        "retry": {
+          "enabled": true,
+          "maxAttempts": 3,
+          "retryDelay": 150
+        },
+        "license": {
+          "type": "MIT"
+        },
+        "authentication": {
+          "access": {
+            "prefix": "Bearer"
+          }
+        },
+        "devContainer": false,
+        "generateEnv": true,
+        "responseHeaders": false,
+        "includeOptionalSnippetParameters": true,
+        "injectedModels": [],
+        "inferServiceNames": false,
+        "packageId": "Alohi.Signplus"
+      },
+      "php": {
+        "githubRepoName": "signplus-php",
+        "retry": {
+          "enabled": true,
+          "maxAttempts": 3,
+          "retryDelay": 150
+        },
+        "license": {
+          "type": "MIT"
+        },
+        "authentication": {
+          "access": {
+            "prefix": "Bearer"
+          }
+        },
+        "devContainer": false,
+        "generateEnv": true,
+        "responseHeaders": false,
+        "includeOptionalSnippetParameters": true,
+        "injectedModels": [],
+        "inferServiceNames": false,
+        "packageName": "alohi/signplus"
+      },
+      "cli": {
+        "retry": {
+          "enabled": true,
+          "maxAttempts": 3,
+          "retryDelay": 150
+        },
+        "license": {
+          "type": "MIT"
+        },
+        "authentication": {
+          "access": {
+            "prefix": "Bearer"
+          }
+        },
+        "devContainer": false,
+        "generateEnv": true,
+        "responseHeaders": false,
+        "includeOptionalSnippetParameters": true,
+        "injectedModels": [],
+        "inferServiceNames": false
+      },
+      "rust": {
+        "retry": {
+          "enabled": true,
+          "maxAttempts": 3,
+          "retryDelay": 150
+        },
+        "license": {
+          "type": "MIT"
+        },
+        "authentication": {
+          "access": {
+            "prefix": "Bearer"
+          }
+        },
+        "devContainer": false,
+        "generateEnv": true,
+        "responseHeaders": false,
+        "includeOptionalSnippetParameters": true,
+        "injectedModels": [],
+        "inferServiceNames": false
       }
     },
-    "validationsToIgnore": [],
-    "publishing": {
-      "githubOrg": "alohihq",
-      "platform": "github"
+    "customCode": {
+      "trackChanges": true,
+      "conflictStrategy": "mark"
     },
-    "analytics": {
-      "streaming": false,
-      "pagination": false
+    "retry": {
+      "enabled": true,
+      "maxAttempts": 3,
+      "retryDelay": 150,
+      "maxDelay": 5000,
+      "retryDelayJitter": 50,
+      "backOffFactor": 2,
+      "httpMethodsToRetry": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "PATCH",
+        "HEAD",
+        "OPTIONS"
+      ]
+    },
+    "license": {
+      "type": "MIT",
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT",
+      "path": "MIT.ejs"
     },
     "authentication": {
       "access": {
@@ -197,31 +287,18 @@
     },
     "devContainer": false,
     "generateEnv": true,
-    "includeOptionalSnippetParameters": true,
-    "license": {
-      "type": "MIT",
-      "name": "MIT",
-      "url": "https://opensource.org/licenses/MIT",
-      "path": "MIT.ejs"
-    },
     "responseHeaders": false,
-    "buildAllModels": false,
-    "retry": {
-      "enabled": true,
-      "maxAttempts": 3,
-      "retryDelay": 150,
-      "maxDelay": 5000,
-      "retryDelayJitter": 50,
-      "backOffFactor": 2,
-      "httpCodesToRetry": [408, 429, 500, 502, 503, 504],
-      "httpMethodsToRetry": ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"]
-    },
-    "multiTenant": true,
-    "includeWatermark": false,
+    "includeOptionalSnippetParameters": true,
+    "injectedModels": [],
+    "inferServiceNames": false,
+    "languages": [
+      "php"
+    ],
+    "deliveryMethods": [
+      "zip"
+    ],
+    "sdkName": "signplus",
     "githubRepoName": "signplus-php",
-    "ignoreFiles": [],
-    "renameIllegalModelProperties": true,
-    "additionalConstructorParameters": [],
     "packageName": "alohi/signplus",
     "language": "php",
     "deliveryMethod": "zip",
@@ -232,14 +309,14 @@
     "usesFormData": false,
     "environmentVariables": [],
     "fileOutput": "/tmp",
-    "inferServiceNames": false,
     "httpLibrary": {
       "name": "axios",
-      "packages": {
-        "axios": "^1.9.0"
-      },
-      "languages": ["typescript"]
+      "packages": {},
+      "languages": [
+        "typescript"
+      ]
     },
+    "multiTenant": false,
     "customQueries": {
       "paths": [],
       "rawQueries": [],
@@ -249,12 +326,16 @@
     "specType": "openapi",
     "deprecatedOperations": {
       "include": true
+    },
+    "multipleResponses": {
+      "enabled": false
     }
   },
   "files": [
     ".gitignore",
     "src/Client.php",
     "composer.json",
+    ".github/workflows/release.yml",
     "example/index.php",
     "src/Services/BaseService.php",
     "src/Services/Signplus.php",
@@ -329,6 +410,9 @@
     "src/Models/TemplateOrderField.php",
     "src/Models/WebhookEvent.php",
     "src/Utils/Serializer.php",
+    "src/Utils/Validator.php",
+    "src/Utils/LineDecoder.php",
+    "documentation/snippets/snippets.json",
     "documentation/models/CreateEnvelopeRequest.md",
     "documentation/models/Envelope.md",
     "documentation/models/CreateEnvelopeFromTemplateRequest.md",
@@ -397,7 +481,167 @@
     "documentation/models/TemplateOrderField.md",
     "documentation/models/WebhookEvent.md",
     ".env.example",
+    "src/Exceptions/ApiException.php",
+    "src/Exceptions/TimeoutException.php",
+    "src/Exceptions/ValidationException.php",
     "README.md",
     "documentation/services/Signplus.md"
-  ]
+  ],
+  "fileHashes": {
+    ".env.example": "deba3e289e64ed2ccb9169d2739d4db6bf8383b6cdfa5f98abd6f76010df80fd",
+    ".github/workflows/release.yml": "752085c6866e36aa03d3ed8a95550c072e0dd580857e600f7570ed13e3f10dc6",
+    ".gitignore": "3358880c0495623a0f5e69cb251a6dd46b4a1a977a1a3fbe5499a82309a0fca5",
+    "LICENSE": "3ec558dc6e9c9355ab4b28c942caa92bf90b0b82c12d7838d2ef92467ad135c1",
+    "README.md": "e65a6539c23cd6dc7bd8152bee1faf3351a64328dfa1c2ec172f084da895345b",
+    "composer.json": "e6cbbc99a6b7e35d3cada04e2a69144aa3d47aca5ebfea7a682bb2ed3e5736fd",
+    "documentation/models/AddAnnotationRequest.md": "a033a3d2033d1b32ac5e4c0f67c1f9757e7218f284574a6efa208f1c5d62c5c6",
+    "documentation/models/AddEnvelopeDocumentRequest.md": "5e025132a5118a8b26cc478407673444e00b99dc6941d9e899eb5e253eed91e6",
+    "documentation/models/AddEnvelopeSigningStepsRequest.md": "ddd074027089cf23e2587afe7919bdbe75c7e539c712d7be89d8321d19c1460f",
+    "documentation/models/AddTemplateDocumentRequest.md": "d2e866f8047f42483a100b0b7c76cd3202f48be45b920b1754553bc2be3c747c",
+    "documentation/models/AddTemplateSigningStepsRequest.md": "bd064a4c01ac0e71884d25910eee8af7151cb623c1c8fae1f57867010e8aefd1",
+    "documentation/models/Annotation.md": "52711cc02eeac2c3e1e15e9e54a525926d05f9262e8dbde17bccbf610605c4a6",
+    "documentation/models/AnnotationCheckbox.md": "ea8a1f62c8254595e1acb731bc81948bae6e3ee98ffc66d3ca5c3ce92c8a4680",
+    "documentation/models/AnnotationCheckboxStyle.md": "04e74f5d05cb76d4d32d1501bca5cd73a0164afdd50bdf18c212ec3706014fd4",
+    "documentation/models/AnnotationDateTime.md": "da1cf129009f20ffe85f67445c6373861f3e8f8938722aac64bd15f983f29989",
+    "documentation/models/AnnotationDateTimeFormat.md": "23ab61d960378da941d26681a56e66cf2afba86de8135c13ffd4d56848bc566a",
+    "documentation/models/AnnotationFont.md": "0e0a4d040d51a59d3a5c916615f45b76b9196769790d2164227a3f4ad52f622a",
+    "documentation/models/AnnotationFontFamily.md": "a99a9d7d4cedd1be6e97b22d2dc20b06db5c4a0dd5fbd62dfc2538d5c9543caa",
+    "documentation/models/AnnotationInitials.md": "fa2a2e8956f0d3d8abdfc33e858e7275cc45856ac25e18c188b629cb2020da5e",
+    "documentation/models/AnnotationSignature.md": "c362efba09d08fd603119c3b79fedacb7771df37031e388bb3bae0a547f25c8f",
+    "documentation/models/AnnotationText.md": "8af3baaa8961e93e2db880a5e8b047bec7e7722d7049dbfb334b7f37d7b297ca",
+    "documentation/models/AnnotationType.md": "1ade8833ee87d80ecab66e397fd78edace68d0b08bcc2441b408a2779ae3866a",
+    "documentation/models/AttachmentPlaceholder.md": "5d3407ca117c1d6d2ad983e1555a614e1c70ce1948bcec819308279e8d3c291d",
+    "documentation/models/AttachmentPlaceholderFile.md": "9cc212aed79ce0a441a5c2d9394da92da3468c3f9f1c287e1f7af0f26ff61d2b",
+    "documentation/models/AttachmentPlaceholderRequest.md": "0b31f0a82562d57562ca4e89581d6e486404a2ce781009169269564b44aa1a8a",
+    "documentation/models/AttachmentPlaceholdersPerRecipient.md": "efc0cfdf69c02f2777e2dfe498e10f516d5749eaf3676f73ec3590ed0ef0f0bf",
+    "documentation/models/AttachmentSettings.md": "c99564ea37158e56c968b1f3b5923d2099318935b263cd4bdb46e4a584150774",
+    "documentation/models/CreateEnvelopeFromTemplateRequest.md": "97db6061387528251d2cafa1677097b0b09c712c62259ef4151bb6ac34298f50",
+    "documentation/models/CreateEnvelopeRequest.md": "bf515ca04dc8201d8a646b18bb9a29fb7bbc49f98217b0737dc91f795d0b3f43",
+    "documentation/models/CreateTemplateRequest.md": "0eabb8f2d169c971836c2d83a814071f6bb091a80977b3c5dfed03c6249ad93b",
+    "documentation/models/CreateWebhookRequest.md": "efc9232ab78b5e5012aa8982b1d4fe432f90c3b0d0b9c06950c55e809471b9e1",
+    "documentation/models/Document.md": "327c7264a34f4b79fd2e75ec1f02add8393c543f89e9846cf08f37379a812a16",
+    "documentation/models/DynamicField.md": "a6d5d0f026c7fdcb8bd53f91855ea2c20acc3422faf6df5a11de032cdfa1ec0f",
+    "documentation/models/Envelope.md": "38d65b4002b34245efe0ca4163adbd7bb516b4fb4c95441adf6a58caab36d59e",
+    "documentation/models/EnvelopeAttachments.md": "94ac4579490d9c36aa65fa7de6742daa87c1b38acfa75caa34aafab560362ef3",
+    "documentation/models/EnvelopeFlowType.md": "3052dfad4865fd0930bb74f21bac146d71b8936f45470bad34f5b63fbe2d7f7b",
+    "documentation/models/EnvelopeLegalityLevel.md": "4f1d6cebbe6367fc086e09dcc5d2c5097428f4a54fd0a2b25941f33afd19fd56",
+    "documentation/models/EnvelopeNotification.md": "43612ab5ca12750af3066445373b3c3a04564655b794e9e414d90ac709584a10",
+    "documentation/models/EnvelopeOrderField.md": "c6f3891d14e1ab78e39e71b3eb25a791e317c3ae70a7aadffe8516f7eb41029c",
+    "documentation/models/EnvelopeStatus.md": "4b136c37d3fd8bdbd6025d246bfae14ea0213189e4fb46d79dd4b38e44a5b3b5",
+    "documentation/models/ListEnvelopeDocumentAnnotationsResponse.md": "4567cd7099429a3af45b87fc550c2c4fb13d0ca247499983585f768f9634f959",
+    "documentation/models/ListEnvelopeDocumentsResponse.md": "856a62e3a87d4997b2a262aa9435e715f7e1c88165e4fae36dfef3d498456611",
+    "documentation/models/ListEnvelopesRequest.md": "ca383244f20de80e250540ecd5b89125fb12d1a972c7987c5d1bbfd73845fd6f",
+    "documentation/models/ListEnvelopesResponse.md": "aa055eded0898a0b1ebf7c6c3df6cd065cb46c11376aeecc613b585bd46a4f9f",
+    "documentation/models/ListTemplateAnnotationsResponse.md": "0b66adf1be1a2b21cabf6bfe8d2a9eda5f4a44b581376937f5c81a45e7271096",
+    "documentation/models/ListTemplateDocumentAnnotationsResponse.md": "a4dad208db0bb029218fc8151c63053e08e80ed87e7c29484a41897228212838",
+    "documentation/models/ListTemplateDocumentsResponse.md": "00169864aab26b50afefa6630677ba6c812d488d5eec12056a5ec0b31a3f186d",
+    "documentation/models/ListTemplatesRequest.md": "7efc30c0fbe8d0e6e6a38e6595fed96db6a3a0df7df9d608643b427b5c2761fb",
+    "documentation/models/ListTemplatesResponse.md": "9094c550a1c387d466c645bef1b1ef8fc036491d555ebeaa28cbc88085c09d53",
+    "documentation/models/ListWebhooksRequest.md": "00067fa56cfb496a17276959ab5fec38c9ed8f233caa2daa846884d683d7218c",
+    "documentation/models/ListWebhooksResponse.md": "8ecb659f71f6f2bade2f9d5393fda3e6ba862bab2c9a429ac249043cb748561e",
+    "documentation/models/Page.md": "2d5cbece2cd49bd51d251046adb15335c2b5c8bd88184771d55390363d8927f4",
+    "documentation/models/Recipient.md": "76c4a1fd179d061d74588814e217e3b93090d328b90c88f6a6357de50f269f8e",
+    "documentation/models/RecipientRole.md": "664ac4cdfc7620b082797671a7fc88c2e16500743e090969b5ebc7e2654eb4f3",
+    "documentation/models/RecipientVerification.md": "07417ad3fbe382337116b031fd0cb4931a73a55cf1658a182053d36579d88cce",
+    "documentation/models/RecipientVerificationType.md": "aa96e72cc3ab17914729cf963e01975116395fe8a6190bcd6c916349fd240bcc",
+    "documentation/models/RenameEnvelopeRequest.md": "1e0f525161339e35411f9dc7ab218c17700394f9f96295de1b59c4d2ba417d8e",
+    "documentation/models/RenameTemplateRequest.md": "47e4f6ef14159737b0f355a39193561b5773250502a3a11a977bbc1ef4b0377f",
+    "documentation/models/SetEnvelopeAttachmentsPlaceholdersRequest.md": "b8a0a8f2a6b4561fdb77e44e31e35ec0536ca21e53c10913e4d2acd43c8d8282",
+    "documentation/models/SetEnvelopeAttachmentsSettingsRequest.md": "5f975a4fda7d2d0cf5d9dfa9baba98b67f410e9a6e1065a08612ea2df76f390c",
+    "documentation/models/SetEnvelopeCommentRequest.md": "00d5bd54523f28d386da25993c7de5301fdcd3d13c185d76e2f29d8109422cd2",
+    "documentation/models/SetEnvelopeDynamicFieldsRequest.md": "b38b783a291f033c4dd8d8f8de4d310fd2ad9d25346920b3c21f750fcdc380b0",
+    "documentation/models/SetEnvelopeExpirationRequest.md": "d077194bebc167a16930576790d9545579c71ecc2cd21b2d448b794256a102bd",
+    "documentation/models/SetEnvelopeLegalityLevelRequest.md": "348cda05c22f5adb84bced3fc9f75f2c59ac387d00b14ce1e487d6fadf5853aa",
+    "documentation/models/SetTemplateCommentRequest.md": "f71d9e77cb23792d67d95512d527a2222b54557b9c406f432ec5b0baa40d3bf7",
+    "documentation/models/SigningStep.md": "0873588736837b5cd50fb88d5c45a27704ae16004edcd779624f7abf4cff34b9",
+    "documentation/models/Template.md": "30277a7e4c4d5e255a2d0f86b23831063ad3cbccd7b0d395ab59ae60b3cfb193",
+    "documentation/models/TemplateOrderField.md": "b1cb43b62a412d1ec83791582d14bb27d8823b4a1049e32ccad4548c73174391",
+    "documentation/models/TemplateRecipient.md": "80b9a5203f3a0bd6ae749e76c80ed79b6b7263baffdc50f506538b576442ea14",
+    "documentation/models/TemplateRecipientRole.md": "4cadfd3678e0493f804cf42a3b20daf32ac953acf86b0f1734d8fc1565377a0e",
+    "documentation/models/TemplateSigningStep.md": "e31ab6864d5dc5224a57dcf8fab592fccd75957a21862a2e60970ba0bd1c8eb8",
+    "documentation/models/Webhook.md": "2e5631a691874a104d02f8c332e749ca927b52c1d73c129668d21e628d71d6b0",
+    "documentation/models/WebhookEvent.md": "bc99d3c8cdec3895062f20c665af315deb67d35446a514528e7927b414302cd4",
+    "documentation/services/Signplus.md": "21a4158f430e2e6670edadfc5db34c18002c5c09a701b4a730517db7d0b34776",
+    "documentation/snippets/snippets.json": "b425936a7028da8fc2afcb6aa6ba5de5349ef4d0b490e74aabab7e3741bdf42e",
+    "example/index.php": "df1b7f6943b7630dd3bcde683e399c931b71f22bd5b6526afd5635ee8c36877e",
+    "prettier.config.js": "2fe33fda52344779fcf235afa8152cfd356880dc3161da09403dc26231bc72d9",
+    "src/Client.php": "ed621b1556e4c35645b279a97d475f349152e022ce6e07ae5b9cff021df602f4",
+    "src/Environment.php": "5f1fa43ad78e6632fc96b62ce6c3cdff88903d002e376a50bf5a06c5168a74ce",
+    "src/Exceptions/ApiException.php": "bfd24eb19616596bd9c48a210aa7ad481197e7c4dbcfab2f01111e7aaf5a65da",
+    "src/Exceptions/TimeoutException.php": "71002705a46ba23075f6389904ff4853bc7af30e2a16310d35c3348e4621ea77",
+    "src/Exceptions/ValidationException.php": "48efb6610dae6e26386e87aedcbecdd034d873024ab12b9bee9742cdb40beb26",
+    "src/Models/AddAnnotationRequest.php": "dec04f15a54170b0963f4f3c8e89d41fd371b369798d96504b79c2b92d4bed59",
+    "src/Models/AddEnvelopeDocumentRequest.php": "8308563b8c00caa5e463be313fe5253d74cf9d5bac1fff071d266f60d4832002",
+    "src/Models/AddEnvelopeSigningStepsRequest.php": "6afc030e44098f57e375ed7ef7c6dec6bb2c7df4cb80b510edbfdf23c9681f44",
+    "src/Models/AddTemplateDocumentRequest.php": "8cdbcf175038c58f05ab84ca07a32a95ac5e7c8165d58b0c83bb876c887a3be7",
+    "src/Models/AddTemplateSigningStepsRequest.php": "a20d91327208ae402859f634f98b82f63c7e799450196bc4a19e9bb38982cb64",
+    "src/Models/Annotation.php": "9b5366588bfb2bfc18d9bacebc693a5f0bd3217cbab5bef00595a10f52d0eb8d",
+    "src/Models/AnnotationCheckbox.php": "eb064b40bba4cd2962f212e2112dfbe44c0642cf93b6ece003366f484a10aa14",
+    "src/Models/AnnotationCheckboxStyle.php": "b66da05e923a338d0ca4a0e2856aad0970e0ea8baa4644b140ae46974e1714dd",
+    "src/Models/AnnotationDateTime.php": "2598f2225a3dcaa7f37b54002686c5d2fc2657c0ab6701c65ade93866980328b",
+    "src/Models/AnnotationDateTimeFormat.php": "5dbfbab2c8328b753fe37c85b7ae38a987047eaaed000b0603ddbf0ae351e7cc",
+    "src/Models/AnnotationFont.php": "4ca8c751c9c84aa71d799aafa941990046dd0110c983a7b797792e0b81e6f19f",
+    "src/Models/AnnotationFontFamily.php": "00b606146fea31fb422fe14151977879299716fc663f36d43b430a00c5d493c9",
+    "src/Models/AnnotationInitials.php": "91ed058436a5e380b874a140207c279c35e1f1205f97b0d20bfb50ebfda64ad5",
+    "src/Models/AnnotationSignature.php": "e44bf0318e397f237dba5c9b86f9bb1e03396725c5189edc384b3232e11c9ffa",
+    "src/Models/AnnotationText.php": "0cc37cbc8c5070a9feb119a2770c8883f095854c1b881631b2a543fc4a7ee5c0",
+    "src/Models/AnnotationType.php": "3c5df36615146d49c778475a5f0f5cb14a81721eb63ae08277248678cd17bdfd",
+    "src/Models/AttachmentPlaceholder.php": "01a3117c3338a51a93a85b20c91a9ed25f6476b4e3da5f793dc39ba6e2453692",
+    "src/Models/AttachmentPlaceholderFile.php": "66c873ee66f3f75e94a6305640f82b9adfc79180d4445f249f5a7aa247ace8c8",
+    "src/Models/AttachmentPlaceholderRequest.php": "2361d92b7ea351b6edcaf4a19447db244f1cfb571bc876b8821c568358204dff",
+    "src/Models/AttachmentPlaceholdersPerRecipient.php": "b605aa359b8375b9177bd52cabc4e30049209e21639e841527d6be258e186c10",
+    "src/Models/AttachmentSettings.php": "05ef0b281eb6b0a4109792fdff701a8e5e95b1cde95f2de615e34a9d13084e6f",
+    "src/Models/CreateEnvelopeFromTemplateRequest.php": "56afe03dab54235d07888409f4559a00eb6af188e994f1a542a7cf47cdc039ec",
+    "src/Models/CreateEnvelopeRequest.php": "5ba33b94565fe3c740682ae7797778569a7ba261b9321d260cde46bdf1d76646",
+    "src/Models/CreateTemplateRequest.php": "55d3e672c06b14ea2b864b939d3f52c868aa6ffb18a4622e3dd793fee0ee5c9d",
+    "src/Models/CreateWebhookRequest.php": "b51b59249e3db9133be7f96e4cf836919bbfc174202c528761938c928ee2d382",
+    "src/Models/Document.php": "96753aa6156f6cd5954d28819c018b591fe009e5d9afb209a2859609695292b0",
+    "src/Models/DynamicField.php": "f03eef0745b2042311fe0f7479d75fbd6a9bc58d60e28cb0224b7c97c2a7a0f3",
+    "src/Models/Envelope.php": "f4a737d0edff51feccb94a47ea9c8a6ef11ea59c64f2ea672afa5080da075bc6",
+    "src/Models/EnvelopeAttachments.php": "01e2278d0e23aa98c923e454d200b0e0c7f8504b4121700064339caf97680527",
+    "src/Models/EnvelopeFlowType.php": "2d59f7e7868b9fccce4be1da8cc9457ab4aa45ce8ff76fd92355669e17085d50",
+    "src/Models/EnvelopeLegalityLevel.php": "86d83bfedcb57fc78529286321436287f447ff51a6f7a3ce2ad8c344cf9a2d68",
+    "src/Models/EnvelopeNotification.php": "391c36ebf62f6f1ddec8020b5e6efdd8179a76fc7aae192a0d74d927d6a87ec6",
+    "src/Models/EnvelopeOrderField.php": "da926092d64ac17d5de0994c3524ff11ef69ec55c5662401131d18764ffbbc07",
+    "src/Models/EnvelopeStatus.php": "89f5012ecb5dc5a0172912808cacb2b84717afe9b65e42c829559e612f930640",
+    "src/Models/ListEnvelopeDocumentAnnotationsResponse.php": "97ccbe7b5a34438f911af4d7dd47af5f41ee93a141d3db7aa11b36bbd1432b48",
+    "src/Models/ListEnvelopeDocumentsResponse.php": "f7401308ac6eb9a08b984690e26de68c5fc9d9e5144c2cad1fd5d8e16dc68b13",
+    "src/Models/ListEnvelopesRequest.php": "9fbb471acc669395400847d2a163d7fb8e7c9919e0649e5269e3dbb536a00ab3",
+    "src/Models/ListEnvelopesResponse.php": "fcd74520c7eb84d53e4abb9f4a3336c39d8c37ec8e66ca34a14a62f85174762a",
+    "src/Models/ListTemplateAnnotationsResponse.php": "d080baefc5c979ba88dbe047b22acc81927aa6fc920909cb91666d5c59cfa3e6",
+    "src/Models/ListTemplateDocumentAnnotationsResponse.php": "905394d3ed036caa9d45733073c343d496b4eb83425df991ff677ce07df625af",
+    "src/Models/ListTemplateDocumentsResponse.php": "93e3da151bacdf52a5ad8712a162cc8f578d49a35bac0c10f47bd43445a8a5f6",
+    "src/Models/ListTemplatesRequest.php": "5f54d9442964e9c9dc0f57185c3131cb5580f0c8c550eecfa9107fe8c6364a3d",
+    "src/Models/ListTemplatesResponse.php": "3f1ffe81c82ef0a8591574495b342930e6b2653170766724fab9cd56d1bb7b3e",
+    "src/Models/ListWebhooksRequest.php": "17b29bdba8ee6fd8927bb426439a1da36f672472871996573240b8126a77cd93",
+    "src/Models/ListWebhooksResponse.php": "2b5f4b42c40cb85c422c663de08715ee4e0bcd691cffe45843ed3015cba4505c",
+    "src/Models/Page.php": "5f2cdc087d929589ee7acf900e7e4843bd45a874729e306f4f67e0c04a9f40ac",
+    "src/Models/Recipient.php": "069d9715f72dd8576ee31992f712d2f4a948630d4e3aead3614a7f639b86dee9",
+    "src/Models/RecipientRole.php": "1205c850eb2de209b018034a5bb1781c968a0d3464566e4b7345ac2c3de93310",
+    "src/Models/RecipientVerification.php": "6190527eb08993b67b6043d24785f93cc058e62f3b5474337217e9ccdee688e6",
+    "src/Models/RecipientVerificationType.php": "94f7d9bdff465a3767d6ea5deb17e004e919f976d8195482c70071921410da5a",
+    "src/Models/RenameEnvelopeRequest.php": "f62d74a73f132977564b068e85ed4e253f427a71409e20c06fa1ff2f6649edd3",
+    "src/Models/RenameTemplateRequest.php": "a9a8eaa6b6f4f34966795f4063f7add455c2946e4e3fc0deb906b0ca5b90064e",
+    "src/Models/SetEnvelopeAttachmentsPlaceholdersRequest.php": "98e91690ccbb20881816563b8c2b386f900e9211ebac518f0fd8a6585da37466",
+    "src/Models/SetEnvelopeAttachmentsSettingsRequest.php": "e2cf8cb84a8c586755637dad33c0dd6dc63cd6206cca570acc9af4de198c9b5a",
+    "src/Models/SetEnvelopeCommentRequest.php": "bb52c282f7508ca260c804229b0973a2a3e80afaf4310d9565dc405f9dd86638",
+    "src/Models/SetEnvelopeDynamicFieldsRequest.php": "bd290b8148ed45efd4a92592365fb8094f89ac3f6fec91f25a237cb5ac0b6c4b",
+    "src/Models/SetEnvelopeExpirationRequest.php": "7cff9690ce8fe849f2aa9b9c9cf96ca1474bd83bd8a0b82c618e0cea57186b55",
+    "src/Models/SetEnvelopeLegalityLevelRequest.php": "cd7c5d59f6ac11f6e6541bd2f3a1eec9a4a6fb7b1fbeedb4dcc0024a6d0b68e5",
+    "src/Models/SetTemplateCommentRequest.php": "c4714fe75632eee85daf8cbd8cc7b3d267d1b2e3e1982862198827ddeb081377",
+    "src/Models/SigningStep.php": "f544b8025fe81a5bc7bc7d1cc50e26931715504c72a2c43884a601e155bda301",
+    "src/Models/Template.php": "a2b9840d5058ee89d895180f8ab04186f59a531532511782343ee0768a2f1016",
+    "src/Models/TemplateOrderField.php": "c5d70c282dab0e153a91a4d3f47eb9ec7426d7f59222ef647b560d2ded5c5cde",
+    "src/Models/TemplateRecipient.php": "fa4fc1ac7fc5ea649ba430d94fa0a05136880eaee9c9e82e7318e6d2ef1bea2f",
+    "src/Models/TemplateRecipientRole.php": "cd6592f8e709e39a3f57d944eb9cb54a09e00753fd26b590e044ec44fc34d399",
+    "src/Models/TemplateSigningStep.php": "cb6fe8392680917e9c7c893edaa807743d0f2b5e9176be6743e82c13bc28a0fc",
+    "src/Models/Webhook.php": "7a1924eb7272d825cf7f147c60b3dd14b88cca82e3b7dbc03063224129cf6069",
+    "src/Models/WebhookEvent.php": "16124668562780860a12427f87767b4e97369dda6996c3cdbb6c5c59fba9258e",
+    "src/Retry.php": "b9aba7604f1a043aa8c029c53d35bbf4e6dcafb80a6def4ae02246c20ad00346",
+    "src/Services/BaseService.php": "8156ac53b7c80da4750912f13201a20e2e34c5ff49cfff16f5efbb54466479bf",
+    "src/Services/Signplus.php": "fda267f7cab5b3fa64cdf5bea5fda4518fb0245ba7b171e31411b61b0d9c49bb",
+    "src/Utils/LineDecoder.php": "1b67b8c7f714d46f00ac61b09d2cda0bdd476cca9242a61870dd264b1c0283a0",
+    "src/Utils/Serializer.php": "94c2af41a3b09cb6e3e3a292df7446d35c1d69d13a7ea3b4e52b40a92a8098f4",
+    "src/Utils/Validator.php": "79e9688da30b346d2815587ff529372e0ad91c3848c998110ca6e792f57f1b06"
+  }
 }

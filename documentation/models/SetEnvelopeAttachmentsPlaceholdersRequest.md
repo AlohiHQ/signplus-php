@@ -6,6 +6,6 @@
 
 | Name | Type | Required | Description |
 | :-------- | :----------| :----------| :----------|
-    | placeholders | array | ✅ |  |
+    | placeholders | [AttachmentPlaceholderRequest](AttachmentPlaceholderRequest.md)[] | ✅ |  |
 
 

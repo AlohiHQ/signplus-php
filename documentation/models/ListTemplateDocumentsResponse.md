@@ -6,6 +6,6 @@
 
 | Name | Type | Required | Description |
 | :-------- | :----------| :----------| :----------|
-    | documents | array | ❌ |  |
+    | documents | [Document](Document.md)[] | ❌ |  |
 
 
