@@ -6,6 +6,6 @@
 
 | Name | Type | Required | Description |
 | :-------- | :----------| :----------| :----------|
-    | settings | model | ✅ |  |
+    | settings | [AttachmentSettings](AttachmentSettings.md) | ✅ |  |
 
 

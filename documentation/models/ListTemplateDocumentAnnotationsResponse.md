@@ -6,6 +6,6 @@
 
 | Name | Type | Required | Description |
 | :-------- | :----------| :----------| :----------|
-    | annotations | array | ❌ |  |
+    | annotations | [Annotation](Annotation.md)[] | ❌ |  |
 
 

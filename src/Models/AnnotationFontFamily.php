@@ -1,16 +1,16 @@
 <?php
 
-namespace Signplus\Models;
+declare(strict_types=1);
 
-use Symfony\Component\Serializer\Annotation\SerializedName;
+namespace Signplus\Models;
 
 /**
  * Font family of the text
  */
 enum AnnotationFontFamily: string
 {
-    case Unknown = 'UNKNOWN';
-    case Serif = 'SERIF';
-    case Sans = 'SANS';
-    case Mono = 'MONO';
+  case Unknown = 'UNKNOWN';
+  case Serif = 'SERIF';
+  case Sans = 'SANS';
+  case Mono = 'MONO';
 }

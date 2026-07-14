@@ -6,6 +6,6 @@
 
 | Name | Type | Required | Description |
 | :-------- | :----------| :----------| :----------|
-    | webhooks | array | ❌ |  |
+    | webhooks | [Webhook](Webhook.md)[] | ❌ |  |
 
 

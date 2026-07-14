@@ -6,6 +6,6 @@
 
 | Name | Type | Required | Description |
 | :-------- | :----------| :----------| :----------|
-    | recipients | array | ❌ | List of recipients |
+    | recipients | [TemplateRecipient](TemplateRecipient.md)[] | ❌ | List of recipients |
 
 

@@ -1,19 +1,19 @@
 <?php
 
-namespace Signplus\Models;
+declare(strict_types=1);
 
-use Symfony\Component\Serializer\Annotation\SerializedName;
+namespace Signplus\Models;
 
 /**
  * Status of the envelope
  */
 enum EnvelopeStatus: string
 {
-    case Draft = 'DRAFT';
-    case InProgress = 'IN_PROGRESS';
-    case Completed = 'COMPLETED';
-    case Expired = 'EXPIRED';
-    case Declined = 'DECLINED';
-    case Voided = 'VOIDED';
-    case Pending = 'PENDING';
+  case Draft = 'DRAFT';
+  case InProgress = 'IN_PROGRESS';
+  case Completed = 'COMPLETED';
+  case Expired = 'EXPIRED';
+  case Declined = 'DECLINED';
+  case Voided = 'VOIDED';
+  case Pending = 'PENDING';
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Signplus\Models;
+declare(strict_types=1);
 
-use Symfony\Component\Serializer\Annotation\SerializedName;
+namespace Signplus\Models;
 
 /**
  * Type of verification the recipient must complete before accessing the envelope.
@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  */
 enum RecipientVerificationType: string
 {
-    case Sms = 'SMS';
-    case Passcode = 'PASSCODE';
-    case IdVerification = 'ID_VERIFICATION';
+  case Sms = 'SMS';
+  case Passcode = 'PASSCODE';
+  case IdVerification = 'ID_VERIFICATION';
 }

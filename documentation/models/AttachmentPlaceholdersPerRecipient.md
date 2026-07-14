@@ -6,8 +6,8 @@
 
 | Name | Type | Required | Description |
 | :-------- | :----------| :----------| :----------|
-    | recipientId | string | ❌ | ID of the recipient |
-    | recipientName | string | ❌ | Name of the recipient |
-    | placeholders | array | ❌ |  |
+    | recipient_id | string | ❌ | ID of the recipient |
+    | recipient_name | string | ❌ | Name of the recipient |
+    | placeholders | [AttachmentPlaceholder](AttachmentPlaceholder.md)[] | ❌ |  |
 
 

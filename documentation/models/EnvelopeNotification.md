@@ -8,6 +8,6 @@
 | :-------- | :----------| :----------| :----------|
     | subject | string | ❌ | Subject of the notification |
     | message | string | ❌ | Message of the notification |
-    | reminderInterval | integer | ❌ | Interval in days to send reminder |
+    | reminder_interval | int | ❌ | Interval in days to send reminder |
 
 

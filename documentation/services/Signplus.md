@@ -57,7 +57,6 @@ A list of all methods in the `Signplus` service. Click on the method name to vie
 
 Create new envelope
 
-
 - HTTP Method: `POST`
 - Endpoint: `/envelope`
 
@@ -76,8 +75,7 @@ Create new envelope
 <?php
 
 use Signplus\Client;
-use Signplus\Models\EnvelopeLegalityLevel;
-use Signplus\Models\CreateEnvelopeRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
@@ -86,7 +84,7 @@ $envelopeLegalityLevel = Models\EnvelopeLegalityLevel::Ses;
 $input = new Models\CreateEnvelopeRequest(
   name: "name",
   legalityLevel: $envelopeLegalityLevel,
-  expiresAt: 6,
+  expiresAt: 9,
   comment: "comment",
   sandbox: true
 );
@@ -101,7 +99,6 @@ print_r($response);
 ## create_envelope_from_template
 
 Create new envelope from template
-
 
 - HTTP Method: `POST`
 - Endpoint: `/envelope/from_template/{template_id}`
@@ -122,7 +119,7 @@ Create new envelope from template
 <?php
 
 use Signplus\Client;
-use Signplus\Models\CreateEnvelopeFromTemplateRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
@@ -145,7 +142,6 @@ print_r($response);
 
 List envelopes
 
-
 - HTTP Method: `POST`
 - Endpoint: `/envelopes`
 
@@ -164,12 +160,13 @@ List envelopes
 <?php
 
 use Signplus\Client;
-use Signplus\Models\EnvelopeStatus;
-use Signplus\Models\EnvelopeOrderField;
-use Signplus\Models\ListEnvelopesRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
+$envelopeStatus = Models\EnvelopeStatus::Draft;
+
+$envelopeOrderField = Models\EnvelopeOrderField::CreationDate;
 
 $input = new Models\ListEnvelopesRequest(
   name: "name",
@@ -179,15 +176,15 @@ $input = new Models\ListEnvelopesRequest(
   statuses: [],
   folderIds: [],
   onlyRootFolder: true,
-  dateFrom: 123,
-  dateTo: 5,
+  dateFrom: 1,
+  dateTo: 8,
   uid: "uid",
-  first: 7,
-  last: 3,
+  first: 2,
+  last: 10,
   after: "after",
   before: "before",
   orderField: $envelopeOrderField,
-  ascending: true,
+  ascending: false,
   includeTrash: true
 );
 
@@ -201,7 +198,6 @@ print_r($response);
 ## get_envelope
 
 Get envelope
-
 
 - HTTP Method: `GET`
 - Endpoint: `/envelope/{envelope_id}`
@@ -235,7 +231,6 @@ print_r($response);
 
 Delete envelope
 
-
 - HTTP Method: `DELETE`
 - Endpoint: `/envelope/{envelope_id}`
 
@@ -267,7 +262,6 @@ print_r($response);
 ## download_envelope_signed_documents
 
 Download signed documents for an envelope
-
 
 - HTTP Method: `GET`
 - Endpoint: `/envelope/{envelope_id}/signed_documents`
@@ -303,7 +297,6 @@ print_r($response);
 
 Download certificate of completion for an envelope
 
-
 - HTTP Method: `GET`
 - Endpoint: `/envelope/{envelope_id}/certificate`
 
@@ -335,7 +328,6 @@ print_r($response);
 ## get_envelope_document
 
 Get envelope document
-
 
 - HTTP Method: `GET`
 - Endpoint: `/envelope/{envelope_id}/document/{document_id}`
@@ -371,7 +363,6 @@ print_r($response);
 
 Get envelope documents
 
-
 - HTTP Method: `GET`
 - Endpoint: `/envelope/{envelope_id}/documents`
 
@@ -404,7 +395,6 @@ print_r($response);
 
 Add envelope document
 
-
 - HTTP Method: `POST`
 - Endpoint: `/envelope/{envelope_id}/document`
 
@@ -424,13 +414,13 @@ Add envelope document
 <?php
 
 use Signplus\Client;
-use Signplus\Models\AddEnvelopeDocumentRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
 
 $input = new Models\AddEnvelopeDocumentRequest(
-  file: file
+  file: "file"
 );
 
 $response = $sdk->signplus->addEnvelopeDocument(
@@ -444,7 +434,6 @@ print_r($response);
 ## set_envelope_dynamic_fields
 
 Set envelope dynamic fields
-
 
 - HTTP Method: `PUT`
 - Endpoint: `/envelope/{envelope_id}/dynamic_fields`
@@ -465,8 +454,7 @@ Set envelope dynamic fields
 <?php
 
 use Signplus\Client;
-use Signplus\Models\DynamicField;
-use Signplus\Models\SetEnvelopeDynamicFieldsRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
@@ -492,7 +480,6 @@ print_r($response);
 
 Add envelope signing steps
 
-
 - HTTP Method: `POST`
 - Endpoint: `/envelope/{envelope_id}/signing_steps`
 
@@ -512,11 +499,31 @@ Add envelope signing steps
 <?php
 
 use Signplus\Client;
-use Signplus\Models\SigningStep;
-use Signplus\Models\AddEnvelopeSigningStepsRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
+$recipientRole = Models\RecipientRole::Signer;
+
+$recipientVerificationType = Models\RecipientVerificationType::Sms;
+
+$recipientVerification = new Models\RecipientVerification(
+  type: $recipientVerificationType,
+  value: "value"
+);
+
+$recipient = new Models\Recipient(
+  id: "id",
+  uid: "uid",
+  name: "name",
+  email: "email",
+  role: $recipientRole,
+  verification: $recipientVerification
+);
+
+$signingStep = new Models\SigningStep(
+  recipients: []
+);
 
 $input = new Models\AddEnvelopeSigningStepsRequest(
   signingSteps: []
@@ -533,7 +540,6 @@ print_r($response);
 ## set_envelope_attachments_settings
 
 Set envelope attachment settings
-
 
 - HTTP Method: `PUT`
 - Endpoint: `/envelope/{envelope_id}/attachments/settings`
@@ -554,14 +560,13 @@ Set envelope attachment settings
 <?php
 
 use Signplus\Client;
-use Signplus\Models\AttachmentSettings;
-use Signplus\Models\SetEnvelopeAttachmentsSettingsRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
 
 $attachmentSettings = new Models\AttachmentSettings(
-  visibleToRecipients: true
+  visibleToRecipients: false
 );
 
 $input = new Models\SetEnvelopeAttachmentsSettingsRequest(
@@ -579,7 +584,6 @@ print_r($response);
 ## set_envelope_attachments_placeholders
 
 Placeholders to be set, completely replacing the existing ones.
-
 
 - HTTP Method: `PUT`
 - Endpoint: `/envelope/{envelope_id}/attachments/placeholders`
@@ -600,8 +604,7 @@ Placeholders to be set, completely replacing the existing ones.
 <?php
 
 use Signplus\Client;
-use Signplus\Models\AttachmentPlaceholderRequest;
-use Signplus\Models\SetEnvelopeAttachmentsPlaceholdersRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
@@ -630,7 +633,6 @@ print_r($response);
 ## get_attachment_file
 
 Get envelope attachment file
-
 
 - HTTP Method: `GET`
 - Endpoint: `/envelope/{envelope_id}/attachments/{file_id}`
@@ -666,7 +668,6 @@ print_r($response);
 
 Send envelope for signature
 
-
 - HTTP Method: `POST`
 - Endpoint: `/envelope/{envelope_id}/send`
 
@@ -698,7 +699,6 @@ print_r($response);
 ## duplicate_envelope
 
 Duplicate envelope
-
 
 - HTTP Method: `POST`
 - Endpoint: `/envelope/{envelope_id}/duplicate`
@@ -732,7 +732,6 @@ print_r($response);
 
 Void envelope
 
-
 - HTTP Method: `PUT`
 - Endpoint: `/envelope/{envelope_id}/void`
 
@@ -765,7 +764,6 @@ print_r($response);
 
 Rename envelope
 
-
 - HTTP Method: `PUT`
 - Endpoint: `/envelope/{envelope_id}/rename`
 
@@ -785,7 +783,7 @@ Rename envelope
 <?php
 
 use Signplus\Client;
-use Signplus\Models\RenameEnvelopeRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
@@ -806,7 +804,6 @@ print_r($response);
 
 Set envelope comment
 
-
 - HTTP Method: `PUT`
 - Endpoint: `/envelope/{envelope_id}/set_comment`
 
@@ -826,7 +823,7 @@ Set envelope comment
 <?php
 
 use Signplus\Client;
-use Signplus\Models\SetEnvelopeCommentRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
@@ -847,7 +844,6 @@ print_r($response);
 
 Set envelope notification
 
-
 - HTTP Method: `PUT`
 - Endpoint: `/envelope/{envelope_id}/set_notification`
 
@@ -867,7 +863,7 @@ Set envelope notification
 <?php
 
 use Signplus\Client;
-use Signplus\Models\EnvelopeNotification;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
@@ -875,7 +871,7 @@ $sdk = new Client(accessToken: 'YOUR_TOKEN');
 $input = new Models\EnvelopeNotification(
   subject: "subject",
   message: "message",
-  reminderInterval: 123
+  reminderInterval: 10
 );
 
 $response = $sdk->signplus->setEnvelopeNotification(
@@ -889,7 +885,6 @@ print_r($response);
 ## set_envelope_expiration_date
 
 Set envelope expiration date
-
 
 - HTTP Method: `PUT`
 - Endpoint: `/envelope/{envelope_id}/set_expiration_date`
@@ -910,13 +905,13 @@ Set envelope expiration date
 <?php
 
 use Signplus\Client;
-use Signplus\Models\SetEnvelopeExpirationRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
 
 $input = new Models\SetEnvelopeExpirationRequest(
-  expiresAt: 1
+  expiresAt: 10
 );
 
 $response = $sdk->signplus->setEnvelopeExpirationDate(
@@ -930,7 +925,6 @@ print_r($response);
 ## set_envelope_legality_level
 
 Set envelope legality level
-
 
 - HTTP Method: `PUT`
 - Endpoint: `/envelope/{envelope_id}/set_legality_level`
@@ -951,11 +945,11 @@ Set envelope legality level
 <?php
 
 use Signplus\Client;
-use Signplus\Models\EnvelopeLegalityLevel;
-use Signplus\Models\SetEnvelopeLegalityLevelRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
+$envelopeLegalityLevel = Models\EnvelopeLegalityLevel::Ses;
 
 $input = new Models\SetEnvelopeLegalityLevelRequest(
   legalityLevel: $envelopeLegalityLevel
@@ -972,7 +966,6 @@ print_r($response);
 ## get_envelope_annotations
 
 Get envelope annotations
-
 
 - HTTP Method: `GET`
 - Endpoint: `/envelope/{envelope_id}/annotations`
@@ -1005,7 +998,6 @@ print_r($response);
 ## get_envelope_document_annotations
 
 Get envelope document annotations
-
 
 - HTTP Method: `GET`
 - Endpoint: `/envelope/{envelope_id}/annotations/{document_id}`
@@ -1041,7 +1033,6 @@ print_r($response);
 
 Add envelope annotation
 
-
 - HTTP Method: `POST`
 - Endpoint: `/envelope/{envelope_id}/annotation`
 
@@ -1061,26 +1052,66 @@ Add envelope annotation
 <?php
 
 use Signplus\Client;
-use Signplus\Models\AnnotationType;
-use Signplus\Models\AnnotationSignature;
-use Signplus\Models\AnnotationInitials;
-use Signplus\Models\AnnotationText;
-use Signplus\Models\AnnotationDateTime;
-use Signplus\Models\AnnotationCheckbox;
-use Signplus\Models\AddAnnotationRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
 $annotationType = Models\AnnotationType::Text;
 
+
+$annotationSignature = new Models\AnnotationSignature(
+  id: "id"
+);
+
+
+$annotationInitials = new Models\AnnotationInitials(
+  id: "id"
+);
+
+$annotationFontFamily = Models\AnnotationFontFamily::Unknown;
+
+$annotationFont = new Models\AnnotationFont(
+  family: $annotationFontFamily,
+  italic: false,
+  bold: false
+);
+
+$annotationText = new Models\AnnotationText(
+  size: 1.36,
+  color: 2.56,
+  value: "value",
+  tooltip: "tooltip",
+  dynamicFieldName: "dynamic_field_name",
+  font: $annotationFont
+);
+
+$annotationDateTimeFormat = Models\AnnotationDateTimeFormat::DmyNumericSlash;
+
+$annotationDateTime = new Models\AnnotationDateTime(
+  size: 5.29,
+  font: $annotationFont,
+  color: "color",
+  autoFill: false,
+  timezone: "timezone",
+  timestamp: 6,
+  format: $annotationDateTimeFormat
+);
+
+$annotationCheckboxStyle = Models\AnnotationCheckboxStyle::CircleCheck;
+
+$annotationCheckbox = new Models\AnnotationCheckbox(
+  checked: false,
+  style: $annotationCheckboxStyle
+);
+
 $input = new Models\AddAnnotationRequest(
   recipientId: "recipient_id",
   documentId: "document_id",
-  page: 2,
-  x: 6.59,
-  y: 2.19,
-  width: 4.48,
-  height: 7.11,
+  page: 7,
+  x: 8.49,
+  y: 9.25,
+  width: 9.39,
+  height: 6.21,
   required: true,
   type: $annotationType,
   signature: $annotationSignature,
@@ -1101,7 +1132,6 @@ print_r($response);
 ## delete_envelope_annotation
 
 Delete envelope annotation
-
 
 - HTTP Method: `DELETE`
 - Endpoint: `/envelope/{envelope_id}/annotation/{annotation_id}`
@@ -1137,7 +1167,6 @@ print_r($response);
 
 Create new template
 
-
 - HTTP Method: `POST`
 - Endpoint: `/template`
 
@@ -1156,7 +1185,7 @@ Create new template
 <?php
 
 use Signplus\Client;
-use Signplus\Models\CreateTemplateRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
@@ -1176,7 +1205,6 @@ print_r($response);
 
 List templates
 
-
 - HTTP Method: `POST`
 - Endpoint: `/templates`
 
@@ -1195,18 +1223,18 @@ List templates
 <?php
 
 use Signplus\Client;
-use Signplus\Models\TemplateOrderField;
-use Signplus\Models\ListTemplatesRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
+$templateOrderField = Models\TemplateOrderField::TemplateId;
 
 $input = new Models\ListTemplatesRequest(
   name: "name",
   tags: [],
   ids: [],
-  first: 8,
-  last: 10,
+  first: 0,
+  last: 3,
   after: "after",
   before: "before",
   orderField: $templateOrderField,
@@ -1223,7 +1251,6 @@ print_r($response);
 ## get_template
 
 Get template
-
 
 - HTTP Method: `GET`
 - Endpoint: `/template/{template_id}`
@@ -1257,7 +1284,6 @@ print_r($response);
 
 Delete template
 
-
 - HTTP Method: `DELETE`
 - Endpoint: `/template/{template_id}`
 
@@ -1289,7 +1315,6 @@ print_r($response);
 ## duplicate_template
 
 Duplicate template
-
 
 - HTTP Method: `POST`
 - Endpoint: `/template/{template_id}/duplicate`
@@ -1323,7 +1348,6 @@ print_r($response);
 
 Add template document
 
-
 - HTTP Method: `POST`
 - Endpoint: `/template/{template_id}/document`
 
@@ -1343,13 +1367,13 @@ Add template document
 <?php
 
 use Signplus\Client;
-use Signplus\Models\AddTemplateDocumentRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
 
 $input = new Models\AddTemplateDocumentRequest(
-  file: file
+  file: "file"
 );
 
 $response = $sdk->signplus->addTemplateDocument(
@@ -1363,7 +1387,6 @@ print_r($response);
 ## get_template_document
 
 Get template document
-
 
 - HTTP Method: `GET`
 - Endpoint: `/template/{template_id}/document/{document_id}`
@@ -1399,7 +1422,6 @@ print_r($response);
 
 Get template documents
 
-
 - HTTP Method: `GET`
 - Endpoint: `/template/{template_id}/documents`
 
@@ -1432,7 +1454,6 @@ print_r($response);
 
 Add template signing steps
 
-
 - HTTP Method: `POST`
 - Endpoint: `/template/{template_id}/signing_steps`
 
@@ -1452,11 +1473,19 @@ Add template signing steps
 <?php
 
 use Signplus\Client;
-use Signplus\Models\TemplateSigningStep;
-use Signplus\Models\AddTemplateSigningStepsRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
+$templateRecipientRole = Models\TemplateRecipientRole::Signer;
+
+$templateRecipient = new Models\TemplateRecipient(
+  id: "id",
+  uid: "uid",
+  name: "name",
+  email: "email",
+  role: $templateRecipientRole
+);
 
 $templateSigningStep = new Models\TemplateSigningStep(
   recipients: []
@@ -1478,7 +1507,6 @@ print_r($response);
 
 Rename template
 
-
 - HTTP Method: `PUT`
 - Endpoint: `/template/{template_id}/rename`
 
@@ -1498,7 +1526,7 @@ Rename template
 <?php
 
 use Signplus\Client;
-use Signplus\Models\RenameTemplateRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
@@ -1519,7 +1547,6 @@ print_r($response);
 
 Set template comment
 
-
 - HTTP Method: `PUT`
 - Endpoint: `/template/{template_id}/set_comment`
 
@@ -1539,7 +1566,7 @@ Set template comment
 <?php
 
 use Signplus\Client;
-use Signplus\Models\SetTemplateCommentRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
@@ -1560,7 +1587,6 @@ print_r($response);
 
 Set template notification
 
-
 - HTTP Method: `PUT`
 - Endpoint: `/template/{template_id}/set_notification`
 
@@ -1580,7 +1606,7 @@ Set template notification
 <?php
 
 use Signplus\Client;
-use Signplus\Models\EnvelopeNotification;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
@@ -1588,7 +1614,7 @@ $sdk = new Client(accessToken: 'YOUR_TOKEN');
 $input = new Models\EnvelopeNotification(
   subject: "subject",
   message: "message",
-  reminderInterval: 123
+  reminderInterval: 10
 );
 
 $response = $sdk->signplus->setTemplateNotification(
@@ -1602,7 +1628,6 @@ print_r($response);
 ## get_template_annotations
 
 Get template annotations
-
 
 - HTTP Method: `GET`
 - Endpoint: `/template/{template_id}/annotations`
@@ -1635,7 +1660,6 @@ print_r($response);
 ## get_document_template_annotations
 
 Get document template annotations
-
 
 - HTTP Method: `GET`
 - Endpoint: `/template/{template_id}/annotations/{document_id}`
@@ -1671,7 +1695,6 @@ print_r($response);
 
 Add template annotation
 
-
 - HTTP Method: `POST`
 - Endpoint: `/template/{template_id}/annotation`
 
@@ -1691,26 +1714,66 @@ Add template annotation
 <?php
 
 use Signplus\Client;
-use Signplus\Models\AnnotationType;
-use Signplus\Models\AnnotationSignature;
-use Signplus\Models\AnnotationInitials;
-use Signplus\Models\AnnotationText;
-use Signplus\Models\AnnotationDateTime;
-use Signplus\Models\AnnotationCheckbox;
-use Signplus\Models\AddAnnotationRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
 $annotationType = Models\AnnotationType::Text;
 
+
+$annotationSignature = new Models\AnnotationSignature(
+  id: "id"
+);
+
+
+$annotationInitials = new Models\AnnotationInitials(
+  id: "id"
+);
+
+$annotationFontFamily = Models\AnnotationFontFamily::Unknown;
+
+$annotationFont = new Models\AnnotationFont(
+  family: $annotationFontFamily,
+  italic: false,
+  bold: false
+);
+
+$annotationText = new Models\AnnotationText(
+  size: 1.36,
+  color: 2.56,
+  value: "value",
+  tooltip: "tooltip",
+  dynamicFieldName: "dynamic_field_name",
+  font: $annotationFont
+);
+
+$annotationDateTimeFormat = Models\AnnotationDateTimeFormat::DmyNumericSlash;
+
+$annotationDateTime = new Models\AnnotationDateTime(
+  size: 5.29,
+  font: $annotationFont,
+  color: "color",
+  autoFill: false,
+  timezone: "timezone",
+  timestamp: 6,
+  format: $annotationDateTimeFormat
+);
+
+$annotationCheckboxStyle = Models\AnnotationCheckboxStyle::CircleCheck;
+
+$annotationCheckbox = new Models\AnnotationCheckbox(
+  checked: false,
+  style: $annotationCheckboxStyle
+);
+
 $input = new Models\AddAnnotationRequest(
   recipientId: "recipient_id",
   documentId: "document_id",
-  page: 2,
-  x: 6.59,
-  y: 2.19,
-  width: 4.48,
-  height: 7.11,
+  page: 7,
+  x: 8.49,
+  y: 9.25,
+  width: 9.39,
+  height: 6.21,
   required: true,
   type: $annotationType,
   signature: $annotationSignature,
@@ -1731,7 +1794,6 @@ print_r($response);
 ## delete_template_annotation
 
 Delete template annotation
-
 
 - HTTP Method: `DELETE`
 - Endpoint: `/template/{template_id}/annotation/{annotation_id}`
@@ -1767,7 +1829,6 @@ print_r($response);
 
 Set template attachment settings
 
-
 - HTTP Method: `PUT`
 - Endpoint: `/template/{template_id}/attachments/settings`
 
@@ -1787,14 +1848,13 @@ Set template attachment settings
 <?php
 
 use Signplus\Client;
-use Signplus\Models\AttachmentSettings;
-use Signplus\Models\SetEnvelopeAttachmentsSettingsRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
 
 $attachmentSettings = new Models\AttachmentSettings(
-  visibleToRecipients: true
+  visibleToRecipients: false
 );
 
 $input = new Models\SetEnvelopeAttachmentsSettingsRequest(
@@ -1812,7 +1872,6 @@ print_r($response);
 ## set_template_attachments_placeholders
 
 Placeholders to be set, completely replacing the existing ones.
-
 
 - HTTP Method: `PUT`
 - Endpoint: `/template/{template_id}/attachments/placeholders`
@@ -1833,8 +1892,7 @@ Placeholders to be set, completely replacing the existing ones.
 <?php
 
 use Signplus\Client;
-use Signplus\Models\AttachmentPlaceholderRequest;
-use Signplus\Models\SetEnvelopeAttachmentsPlaceholdersRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
@@ -1864,7 +1922,6 @@ print_r($response);
 
 Create webhook
 
-
 - HTTP Method: `POST`
 - Endpoint: `/webhook`
 
@@ -1883,8 +1940,7 @@ Create webhook
 <?php
 
 use Signplus\Client;
-use Signplus\Models\WebhookEvent;
-use Signplus\Models\CreateWebhookRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
@@ -1906,7 +1962,6 @@ print_r($response);
 
 List webhooks
 
-
 - HTTP Method: `POST`
 - Endpoint: `/webhooks`
 
@@ -1925,11 +1980,11 @@ List webhooks
 <?php
 
 use Signplus\Client;
-use Signplus\Models\WebhookEvent;
-use Signplus\Models\ListWebhooksRequest;
+use Signplus\Models;
 
 $sdk = new Client(accessToken: 'YOUR_TOKEN');
 
+$webhookEvent = Models\WebhookEvent::EnvelopeExpired;
 
 $input = new Models\ListWebhooksRequest(
   webhookId: "webhook_id",
@@ -1946,7 +2001,6 @@ print_r($response);
 ## delete_webhook
 
 Delete webhook
-
 
 - HTTP Method: `DELETE`
 - Endpoint: `/webhook/{webhook_id}`
